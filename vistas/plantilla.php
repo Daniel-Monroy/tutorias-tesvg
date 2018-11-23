@@ -92,7 +92,7 @@
 ===============================================>>-->
 <?php
 
-$_SESSION = false;
+$_SESSION = true;
 
 if ($_SESSION == false) {
 

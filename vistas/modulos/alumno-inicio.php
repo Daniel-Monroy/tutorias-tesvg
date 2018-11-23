@@ -98,97 +98,64 @@ $servidor = Ruta::ctrRutaServidor();
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<h2 class="servicios-heading text-uppercase">Our Amazing Team</h2>
-					<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+					<h2 class="servicios-heading text-uppercase">Nuestros Profesores</h2>
+					<h3 class="section-subheading text-muted">Algunos de ellos aparecen aquí.</h3>
 				</div>
 			</div>
+
 			<div class="row">
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto img-circle" src="<?php echo $url;?>vistas/img/team/2.jpg" alt="">
-						<h4>Juan Pablo</h4>
-						<p class="text-muted">Jefe de Divición</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-twitter"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-facebook-f"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-youtube-play"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
+			<?php
+
+			$tutores = ControladorUsuarios::ctrMostrarTutores();
+
+			foreach ($tutores as $key => $value) {
+
+				echo '
+								<div class="col-sm-4">
+								<div class="team-member">
+									<img class="mx-auto img-circle" src="'.$servidor.$value["foto"].'" alt="">
+									<h4>'.$value["nombre"].'</h4>
+									<p class="text-muted">'.$value["profesion"].'</p>
+								</div>
+								</div>
+						 ';
+
+			}
+
+			?>
+			</div>
+
+		</div>
+	</section>
+
+
+	<section id="actividades">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 contenedor-video">
+					<img src="<?php echo $url ?>vistas/img/bg-talleres.jpg" class="img-responsive" alt="">
+					<video autoplay loop poster="<?php echo $url ?>vistas/img/bg-talleres.jpg" class="video-actividades">
+						<source src="<?php echo $url ?>vistas/img/video/video.mp4" type="video/mp4">
+						<source src="<?php echo $url ?>vistas/img/video/video.webm" type="video/webm">
+						<source src="<?php echo $url ?>vistas/img/video/video.ogv" type="video/ogg">
+					</video>
 				</div>
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto img-circle" src="<?php echo $url;?>vistas/img/team/2.jpg" alt="">
-						<h4>Juan Pablo</h4>
-						<p class="text-muted">Jefe de Divición</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-twitter"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-facebook-f"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-youtube-play"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto img-circle" src="<?php echo $url;?>vistas/img/team/2.jpg" alt="">
-						<h4>Juan Pablo</h4>
-						<p class="text-muted">Jefe de Divición</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-twitter"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-facebook-f"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#">
-									<i class="fa fa-youtube-play"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</section>
 
-	<section class="text-center resumen-actividades">
-		<div class="row">
-			<div class="col-xs-12 contenedor-video">
+	<!-- <section class="text-center container-fluid resumen-actividades">
+
+		<div class="row container">
+			<div class="col-xs-12">
 				<video autoplay loop poster="<?php echo $url ?>vistas/img/bg-talleres.jpg">
 					<source src="<?php echo $url ?>vistas/img/video/video.mp4" type="video/mp4">
 					<source src="<?php echo $url ?>vistas/img/video/video.webm" type="video/webm">
 					<source src="<?php echo $url ?>vistas/img/video/video.ogv" type="video/ogg">
 				</video>
 			</div>
-		</div><!--contenedor del video-->
+		</div>
 
 		<div class="row contenido-programa">
 			<div class="col-lg-12">
@@ -197,28 +164,42 @@ $servidor = Ruta::ctrRutaServidor();
 			</div>
 
 			<div id="talleres" class="col-xs-12 info-curso bg-muted">
-				<h3 class="section-subheading tareas"> <span> <i class="fa fa-calendar">  </i> </span> Tareas</h3>
-				<div class="row">
-					<div class="detalle-evento col-xs-12">
-							<h3 class="text-primary">HTML 5, CSS3 y JAVASCRIPT</h3>
-							<p><i class="fa fa-clock-o" aria-hidden="true"></i>16:00 hrs</p>
-							<p><i class="fa fa-calendar" aria-hidden="true"></i>10 de Dic</p>
-							<p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez</p>
-					</div>
-					<div class="detalle-evento col-xs-12">
-							<h3 class="text-primary">HTML 5, CSS3 y JAVASCRIPT</h3>
-							<p><i class="fa fa-clock-o" aria-hidden="true"></i>16:00 hrs</p>
-							<p><i class="fa fa-calendar" aria-hidden="true"></i>10 de Dic</p>
-							<p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez</p>
-					</div>
-					<div class="detalle-evento col-xs-12">
-							<h3 class="text-primary">HTML 5, CSS3 y JAVASCRIPT</h3>
-							<p><i class="fa fa-clock-o" aria-hidden="true"></i>16:00 hrs</p>
-							<p><i class="fa fa-calendar" aria-hidden="true"></i>10 de Dic</p>
-							<p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez</p>
-					</div>
-				</div>
+				<h3 class="tareas text-primary"> <span> <i class="fa fa-calendar"></i> </span> Tareas</h3>
+				<div class="row"> -->
+
+					<?php
+
+						/*=============================================>>>>>
+						= ACTIVIDADES PENDIENTES =
+						===============================================>>>>>*/
+					 //
+						// $item1 = "id_alumno";
+					 //
+						// $value1 = "juan";
+					 //
+						// $item2 = "fecha";
+					 //
+						// $value2 = "DESC";
+					 //
+						// $actividades_pendientes = ControladorActividades::ctrActividadesPendientes($item1, $value1, $item2, $value2);
+					 //
+						// foreach ($actividades_pendientes as $key => $value) {
+						// 		echo '
+					 //
+						// 			<div class="detalle-evento col-xs-12">
+						// 					<h3 class="text-primary">'.$value["actividad"].'</h3>
+						// 					<p><i class="fa fa-clock-o" aria-hidden="true"></i>'.$value["hora-actividad"].' hrs</p>
+						// 					<p><i class="fa fa-calendar" aria-hidden="true"></i>'.$value["fecha-actividad"].'</p>
+						// 					<p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez</p>
+						// 			</div>
+					 //
+						// 		';
+						// }
+					 // ?>
+				<!-- </div>
+
 			</div>
 
 		</div>
-	</section>
+
+	</section> -->

@@ -35,5 +35,15 @@ class ControladorActividades
 
   }
 
+  static public function ctrActividadesPendientes($item1, $value1, $item2, $value2){
+
+    $tabla = "actividadesPendientes";
+
+    $respuesta = ModeloActividades::mdlMostrarActividadesPendientes($tabla, $item1, $value1, $item2, $value2);
+
+    return $respuesta;
+
+  }
+
 
 }

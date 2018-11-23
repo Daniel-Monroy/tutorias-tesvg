@@ -130,6 +130,8 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   background-color: #212529;
 }
 
+
+
 /*=============================================>>>>>
 = ACTIVIDADES =
 ===============================================>>>>>*/
@@ -150,6 +152,7 @@ div.contenido-programa
  height: 100%;
  padding-bottom: 50px;
 }
+
 div.programa-actividades
 {
  background-color: rgba(255,255, 255,.8);
@@ -157,10 +160,7 @@ div.programa-actividades
  margin-top: 50px;
 }
 
-div.programa-actividades h2
-{
-font-weight: bold;
-}
+
 @media only screen and (min-width:768px)
 {
  div.programa-actividades
@@ -339,12 +339,18 @@ nav.menu-actividades a i
 ===============================================================*/
 
 @media (max-width: 767px){
+
   #talleres {
       margin-top: 20px;
       padding: 0 10px;
        width: 100%;
        margin-left: 0px;
   }
+
+  .video-actividades{
+    display: none;
+  }
+
 }
 /*=============================================================
 =MODAL LOGIN  =
