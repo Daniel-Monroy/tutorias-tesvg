@@ -1,13 +1,14 @@
-<footer>
+
+<?php
+
+$estiloPlantilla = ControladorPlantilla::ctrEstiloPlantilla();
+
+?>
+
+<footer class="footer-nav" style="background:<?php echo $estiloPlantilla['barraSuperior'];?>; color:<?php echo $estiloPlantilla['colorTexto'];?> ">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-
-             <?php
-
-             	$estiloPlantilla = ControladorPlantilla::ctrEstiloPlantilla();
-
-             ?>
                 <span class="copyright">Copyright &copy; <?php echo $estiloPlantilla["copyright"]; ?></span>
             </div>
             <div class="col-md-4">

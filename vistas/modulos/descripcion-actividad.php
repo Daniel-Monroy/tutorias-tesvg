@@ -10,10 +10,9 @@
 
       <ul class="breadcrumb lead fondoBreadcrumb text-uppercase">
 
-           <li>
+           <li class="active pagActiva">
              <a href="<?php echo $url;  ?>">INICIO</a>
            </li>
-           <li class="active pagActiva"><?php echo $rutas[0] ?></li>
 
       </ul>
 

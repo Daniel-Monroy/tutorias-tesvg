@@ -1,7 +1,6 @@
 /*=============================================
 GLOBAL
 =============================================*/
-
 *{
 	margin:0px;
 	padding:0px;
@@ -135,6 +134,14 @@ REDES SOCIALES
 	color: #333;
 }
 
+.footer-nav{
+	bottom: 0;
+	height: 80px;
+	width: 100%;
+	position: fixed;
+	z-index: 1020;
+}
+
 
 /*====================================================
 = ESCRITORIO GRANDE (LG revisamos 1366 en adelante ) =
@@ -168,6 +175,11 @@ REDES SOCIALES
 		 text-shadow:6px 6px 1px #dadada;
 	 }
 
+	 .imagen-actividades{
+		 display: none;
+	 }
+
+
  }
  /*=============================================================
 = ESCRITORIO PEQUEÑO O TABLE VERTICAL (MS revisamos 768PX) =
@@ -184,8 +196,14 @@ REDES SOCIALES
 		 text-shadow:4px 4px 1px #dadada;
 	 }
 
+	 	.footer-nav{
+	 		height: 150px;
+			padding-bottom: 20px;
+	 	}
+
  }
-  /*=============================================================
+
+/*=============================================================
 = MOVIL (XS revisamos 320PX) =
 ===============================================================*/
 
@@ -198,6 +216,10 @@ REDES SOCIALES
 	.error404 h1{
 		font-size:75px;
 		text-shadow:2px 2px 1px #dadada;
+	}
+
+	.footer-nav{
+		height: 200px;
 	}
 
 }
