@@ -1,5 +1,4 @@
 <body id="page-top" class="index">
-
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
@@ -289,62 +288,51 @@
         </div>
     </section>
 
-    <!-- Clients Aside -->
-    <aside class="clients">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src=" <?php echo $url ?>vistas/img/logos/envato.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src=" <?php echo $url ?>vistas/img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src=" <?php echo $url ?>vistas/img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src=" <?php echo $url ?>vistas/img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </aside>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Your Website 2016</span>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+  	<section class="clearfix countUpSection">
+  		<div class="container">
 
+  			<div class="page-header text-center">
+  				<h2 class="text-primary">¿Cuantos Somos?</h2>
+  			</div>
+
+  			<div class="row">
+
+  				<div class="col-sm-3 col-xs-12">
+  					<div class="text-center countItem">
+  						<div class="counter">7</div>
+  						<div class="counterInfo bg-color-1">Administradores</div>
+  					</div>
+  				</div>
+
+  				<div class="col-sm-3 col-xs-12">
+  					<div class="text-center countItem">
+  						<div class="counter">8</div>
+  						<div class="counterInfo bg-color-2">Cordinadores</div>
+  					</div>
+  				</div>
+  				<div class="col-sm-3 col-xs-12">
+  					<div class="text-center countItem">
+  						<div class="counter">60</div>
+  						<div class="counterInfo bg-color-3">Tutores</div>
+  					</div>
+  				</div>
+  				<div class="col-sm-3 col-xs-12">
+  					<div class="text-center countItem">
+  						<div class="counter">220</div>
+  						<div class="counterInfo bg-color-4">Tutorados</div>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12">
+  					<div class="btnArea text-center">
+  						<a href="#" class="btn btn-primary">Get it now</a>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</section>
 
     <div class="modal fade" id="modalLogin">
       <div class="modal-dialog">

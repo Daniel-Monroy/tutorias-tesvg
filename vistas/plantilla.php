@@ -61,9 +61,97 @@
 
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
+  <style>
+    <?php
+      $estiloPlantilla = ControladorPlantilla::ctrEstiloPlantilla();
+      /*=============================================>>>>>
+      = ESTILO GENERAL A LA PLANTILLA =
+      ===============================================>>>>>*/
+      echo '
+        .backColor, .backColor a{
+          background:'.$estiloPlantilla["colorFondo"].';
+          color:'.$estiloPlantilla["colorTexto"].';
+        }
+
+        .text-primary {
+          color: '.$estiloPlantilla["colorFondo"].'.!important;
+        }
+
+      ';
+
+    ?>
+
+  </style>
+
 </head>
-  <?php include "modulos/presentacion.php" ?>
-</body>
+
+<body>
+
+<!--============================================>>>>>
+= INCLUIMOS LAS VISTAS DISPONIBLES =
+===============================================>>-->
+<?php
+
+$_SESSION = false;
+
+if ($_SESSION == false) {
+
+  include "modulos/trabajando.php";
+
+} else {
+
+  include "modulos/header.php";
+
+  $rutas = array();
+
+  $ruta = null;
+
+  if (isset($_GET["ruta"])) {
+
+  $rutas = explode("/", $_GET["ruta"]);
+
+
+    $item = "ruta";
+
+    $value =  $rutas[0];
+
+    /*=============================================>>>>>
+    = URL AMIGABLE DE ACTIVIDADES - CATEGORIAS =
+    ===============================================>>>>>*/
+    $actividadesCategoria = ControladorActividades::ctrMostrarActividades($item, $value);
+
+    if ($rutas[0] == $rutaCategoria["ruta"] ) {
+
+      $ruta = $rutas[0];
+
+    }
+    /*=============================================>>>>>
+    = URL AMIGABLE DE ACTIVIDADES - SUBCATEGIRIAS =
+    ===============================================>>>>>*/
+
+    if ($ruta != null || $rutas[0] == "ficha-tutorado" || $rutas[0] == "linea-vida" || $rutas[0] == "foda") {
+
+      include "modulos/descripcion-actividad.php";
+
+    }
+
+      else {
+
+      include "modulos/error404.php";
+
+    }
+
+  } else {
+
+    include "modulos/alumno-inicio.php";
+
+  }
+
+}
+
+include "modulos/footer.php";
+
+?>
 
 
 <!--=============================================>>>>>
@@ -91,5 +179,10 @@
 = JS PERSONALES =
 ===============================================>>>>>-->
 <script src="<?php echo $url;?>vistas/js/presentacion.js"></script>
+
+<script src="<?php echo $url;?>vistas/js/header.js"></script>
+
+
+</body>
 
 </html>

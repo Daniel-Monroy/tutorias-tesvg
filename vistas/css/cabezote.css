@@ -94,6 +94,12 @@ header #buscador button{
 		margin-bottom: 10px;
 	}
 
+	#categorias .pixelCategorias{
+		font-size: 15px;
+		font-family: "Ubuntu", sans-serif;
+		line-height: 1px;
+	}
+
 	/*=============================================>>>>>
 	= Ventanas Modales =
 	===============================================>>>>>*/
@@ -175,7 +181,17 @@ header #buscador button{
 		header #logotipo img{
 			padding:20px 60px;
 			padding-left:0px;
+
 		}
+
+		header #logotipoedomex img{
+		padding:20px 60px;
+	  padding-left:0px;
+  	position: fixed;
+		
+
+}
+
 
 		header #tareas{
 			padding-left:100px;
