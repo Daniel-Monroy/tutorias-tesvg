@@ -1,3 +1,11 @@
+<?php
+
+  $url = Ruta::ctrRuta();
+
+  $servidor = Ruta::ctrRutaServidor();
+
+?>
+
 <body id="page-top" class="index">
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -54,35 +62,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Services</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading">Comunidad</h2>
+                    <h3 class="section-subheading text-muted">Algunos de nuestros usuarios.</h3>
                 </div>
             </div>
+
+            <?php
+              $comunidad = ControladorUsuarios::ctrMostrarComunidad();
+            ?>
+
             <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">E-Commerce</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">Responsive Design</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">Web Security</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                </div>
+              <?php foreach ($comunidad as $key => $value) {
+                echo '<div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa '.$value["icono"].' fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="service-heading">'.$value["tipo-usuario"].'</h4>
+                        <p class="text-muted">'.$value["descripcion"].'</p>
+                    </div>';
+              } ?>
             </div>
         </div>
     </section>
@@ -96,50 +95,33 @@
                     <h3 class="section-subheading text-muted">Nuestro Equipo TESVG.</h3>
                 </div>
             </div>
+
             <div class="row">
+
+              <?php
+
+              $portafolio = ControladorActividades::ctrPortafolioActividades();
+
+              foreach ($portafolio as $key => $value) {
+
+              echo '
+
                 <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src=" <?php echo $url ?>vistas/img/portfolio/roundicons.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Round Icons</h4>
-                        <p class="text-muted">Graphic Design</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src=" <?php echo $url ?>vistas/img/portfolio/startup-framework.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Startup Framework</h4>
-                        <p class="text-muted">Website Design</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src=" <?php echo $url ?>vistas/img/portfolio/treehouse.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Treehouse</h4>
-                        <p class="text-muted">Website Design</p>
-                    </div>
-                </div>
+                  <a class="portfolio-link">
+                    <img class="img-responsive" widht="50" src="'.$servidor.$value["img"].'" alt="">
+                  </a>
+                  <div class="portfolio-caption">
+                    <h4>'.$value["titulo"].'</h4>
+                    <p class="text-muted">'.$value["subtitulo"].'</p>
+                  </div>
+                </div> ';
+
+              }
+
+              ?>
+
             </div>
+
         </div>
     </section>
 
@@ -228,62 +210,31 @@
     <section id="team" class="bg-light-gray">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
+              <div class="col-lg-12 text-center">
+                <h2 class="servicios-heading text-uppercase">Nuestros Profesores</h2>
+                <h3 class="section-subheading text-muted">Algunos de ellos aparecen aquí.</h3>
+              </div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src=" <?php echo $url ?>vistas/img/team/1.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Kay Garland</h4>
-                        <p class="text-muted">Lead Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src=" <?php echo $url ?>vistas/img/team/2.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Larry Parker</h4>
-                        <p class="text-muted">Lead Marketer</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src=" <?php echo $url ?>vistas/img/team/3.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Diana Pertersen</h4>
-                        <p class="text-muted">Lead Developer</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                </div>
+            <?php
+
+            $tutores = ControladorUsuarios::ctrMostrarTutores();
+
+            foreach ($tutores as $key => $value) {
+
+              echo '
+                      <div class="col-sm-4">
+                      <div class="team-member">
+                        <img class="mx-auto img-circle" src="'.$servidor.$value["foto"].'" alt="">
+                        <h4>'.$value["nombre"].'</h4>
+                        <p class="text-muted">'.$value["profesion"].'</p>
+                      </div>
+                      </div>
+                   ';
+
+            }
+
+            ?>
             </div>
         </div>
     </section>
@@ -327,50 +278,55 @@
   			<div class="row">
   				<div class="col-xs-12">
   					<div class="btnArea text-center">
-  						<a href="#" class="btn btn-primary">Get it now</a>
+  						<a href="#modalLogin" data-toggle="modal" class="btn btn-primary">INICIAR</a>
   					</div>
   				</div>
   			</div>
   		</div>
   	</section>
 
-    <div class="modal fade" id="modalLogin">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h2 class="h2-login">Inicio de Sesión</h2>
-          </div>
-          <!-- Modal body -->
-          <div class="modal-body">
-            <form class="formulario" action="alumno-inicio.php" method="post">
-              <h4><small>INGRESA TUS DATOS</small></h4>
-              <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                  </span>
-                  <input type="text" class="form-control" required id="usuarioLogin" name="usuarioLogin" placeholder="Usuario">
-                </div>
-              </div>
+    <div class="container-fluid">
 
-              <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                  </span>
-                  <input type="password" class="form-control" required id="passwordLogin" name="passwordLogin" placeholder="Password">
-                </div>
-              </div>
-              <input type="submit" class="btn btn-primary btn-block" name="btnIngresar" value="INICIAR">
-            </form>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary " data-dismiss="modal">Close</button>
-          </div>
-
-        </div>
-      </div>
+      <div class="modal fade login in" id="modalLogin" aria-hidden="true">
+  		      <div class="modal-dialog login animated">
+      		      <div class="modal-content">
+      		         <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h2 class="modal-title">Inicia con..</h2>
+                      </div>
+                      <div class="modal-body">
+                          <div class="box">
+                               <div class="content">
+                                  <div class="social">
+                                      <a id="google_login" class="circle google" href="#">
+                                          <i class="fa fa-google-plus fa-fw"></i>
+                                      </a>
+                                      <a id="facebook_login" class="circle facebook" href="#">
+                                          <i class="fa fa-facebook fa-fw"></i>
+                                      </a>
+                                  </div>
+                                  <div class="division">
+                                      <div class="line l"></div>
+                                        <span>o</span>
+                                      <div class="line r"></div>
+                                  </div>
+                                  <div class="error"></div>
+                                  <div class="form loginBox">
+                                      <form method="" action="" accept-charset="UTF-8">
+                                      <input id="email" class="form-control" type="text" placeholder="Correo Electronico" name="email">
+                                      <input id="password" class="form-control" type="password" placeholder="Contraseña" name="password">
+                                      <input class="btn btn-default btn-login backColor" type="button" value="Inicio" onclick="loginAjax()">
+                                      </form>
+                                  </div>
+                               </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <div class="forgot register-footer" style="">
+                               <span>Olvidaste Tu Contraseña</span>
+                          </div>
+                      </div>
+      		      </div>
+  		      </div>
+  		  </div>
     </div>

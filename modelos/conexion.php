@@ -11,9 +11,9 @@ class Conexion {
     //
     // $conn = mysqli_connect($servername, $username, $password, $database);
 
-    $link = new PDO("mysql:host=sql175.main-hosting.eu.; dbname=u881670891_tuto1",
-            "u881670891_tuto",
-            "22101919",
+    $link = new PDO("mysql:host=localhost; dbname=u881670891_tuto1",
+            "root",
+            "",
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                           PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
             );

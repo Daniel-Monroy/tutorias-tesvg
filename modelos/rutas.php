@@ -11,7 +11,7 @@
     ===============================================>>>>>*/
     public function ctrRuta(){
 
-      return "http://chamoysteam.xyz/tutorias/";
+      return "http://localhost/tutorias2/";
 
     }
 

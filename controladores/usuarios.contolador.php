@@ -19,4 +19,17 @@
 
     }
 
+    /*=============================================>>>>>
+    = MOSTRAR COMUNIDAD =
+    ===============================================>>>>>*/
+    public function ctrMostrarComunidad(){
+
+      $tabla = "informacion";
+
+      $respuesta = ModeloUsuarios::mdlMostrarComunidad($tabla);
+
+      return $respuesta;
+
+    }
+
   }

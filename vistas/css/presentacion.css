@@ -392,12 +392,24 @@ nav.menu-actividades a i
 /*=============================================================
 =MODAL LOGIN  =
 ===============================================================*/
-#modalLogin .modal-body .from-gourp{
-  background-color: rgba(0,0,0,0.8);
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  margin:0;
+#modalLogin{
+  background-color: rgba(255,255,240,0.3);
+}
+
+#modalLogin .modal-content{
+  text-align: center;
+}
+
+#modalLogin .facebook{
+  background-color: #46639f;
+  color: white;
+  padding: 5  px;
+}
+
+#modalLogin .facebook p i{
+  margin-right: 10px;
+}
+
+#modalLogin .facebook p{
+  font-size: 18px;
 }
