@@ -45,5 +45,15 @@ class ControladorActividades
 
   }
 
+  public function ctrAcercaDe(){
+
+    $tabla = "acercaDe";
+
+    $respuesta = ModeloActividades::mdlAcercaDe($tabla);
+
+    return $respuesta;
+
+  }
+
 
 }
