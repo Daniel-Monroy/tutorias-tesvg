@@ -64,10 +64,39 @@ TOP
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 registro">
 
 				<ul>
-					<li><img class="img-circle" src="<?php echo $servidor?>vistas/img/usuarios/default/anonymous.png" width="10%" alt=""></li>
+
+					<?php
+						if (isset($_SESSION["validarSession"])) {
+
+							if ($_SESSION["validarSession"] == "ok") {
+
+								if ($_SESSION["modo"] == "directo") {
+
+									if ($_SESSION["foto"] == "") {
+
+										echo'
+										<li><img class="img-circle" src="'.$servidor.'vistas/img/usuarios/default/anonymous.png" width="10%" alt=""></li>
+										';
+
+									} else {
+
+										echo'
+											<li><img class="img-circle" src="'.$url.$_SESSION["foto"].'" width="10%" alt=""></li>
+										';
+
+									}
+
+								}
+
+							}
+
+						}
+						?>
 					<li><a style="color: <?php echo $estiloPlantilla['textoSuperior']; ?>" href="#modalIngreso" data-toggle="modal">Ver Perfil</a></li>
+
 					<li>|</li>
-					<li><a style="color: <?php echo $estiloPlantilla['textoSuperior']; ?>" href="#modalRegistro" data-toggle="modal">Salir</a></li>
+
+					<li><a style="color: <?php echo $estiloPlantilla['textoSuperior']; ?>" href="<?php echo $url ?>salir" data-toggle="modal">Salir</a></li>
 
 				</ul>
 

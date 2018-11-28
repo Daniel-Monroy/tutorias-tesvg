@@ -135,6 +135,7 @@ REDES SOCIALES
 }
 
 .footer-nav{
+	margin-top: 20px;
 	bottom: 0;
 	height: 80px;
 	width: 100%;
@@ -158,6 +159,10 @@ REDES SOCIALES
 		text-shadow:8px 8px 1px #dadada;
 	}
 
+	.countUpSection{
+		margin-bottom: 50px;
+	}
+
 }
 
 /*=============================================================
@@ -177,6 +182,10 @@ REDES SOCIALES
 
 	 .imagen-actividades{
 		 display: none;
+	 }
+
+	 .countUpSection{
+		 margin-bottom: 80px;
 	 }
 
 
@@ -201,6 +210,10 @@ REDES SOCIALES
 			padding-bottom: 20px;
 	 	}
 
+		.countUpSection{
+			margin-bottom: 90px;
+		}
+
  }
 
 /*=============================================================
@@ -219,7 +232,12 @@ REDES SOCIALES
 	}
 
 	.footer-nav{
-		height: 200px;
+		padding: 0 0 5px 0!important;
+		height: 150px;
+	}
+
+	.countUpSection{
+		margin-bottom: 100px;
 	}
 
 }

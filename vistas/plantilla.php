@@ -14,6 +14,8 @@
 
     $url = Ruta::ctrRuta();
 
+    session_start();
+
   ?>
   <!--=============================================>>>>>
   = PLUGINS CSS =
@@ -63,6 +65,27 @@
 
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
+
+  <!--=============================================>>>>>
+  = PLUGINS JS =
+  ===============================================>>>>>-->
+  <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
+
+  <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
+
+  <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
+
+  <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
+
+  <script src="<?php echo $url; ?>vistas/js/plugins/jquery.flexslider.js"></script>
+
+  <script src="<?php echo $url; ?>vistas/js/plugins/sweetalert.min.js"></script>
+
+  <script src="<?php echo $url; ?>vistas/js/plugins/jqBootstrapValidation.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+
   <style>
     <?php
       $estiloPlantilla = ControladorPlantilla::ctrEstiloPlantilla();
@@ -94,9 +117,7 @@
 ===============================================>>-->
 <?php
 
-$_SESSION = false;
-
-if ($_SESSION == false) {
+if(!$_SESSION) {
 
   include "modulos/presentacion.php";
 
@@ -122,7 +143,7 @@ if ($_SESSION == false) {
     ===============================================>>>>>*/
     $actividadesCategoria = ControladorActividades::ctrMostrarActividades($item, $value);
 
-    if ($rutas[0] == $rutaCategoria["ruta"] ) {
+    if ($rutas[0] == $actividadesCategoria["ruta"] ) {
 
       $ruta = $rutas[0];
 
@@ -135,9 +156,11 @@ if ($_SESSION == false) {
 
       include "modulos/descripcion-actividad.php";
 
-    }
+    } else if ($rutas[0] == "salir"){
 
-      else {
+      include "modulos/salir.php";
+
+    } else {
 
       include "modulos/error404.php";
 
@@ -155,34 +178,17 @@ include "modulos/footer.php";
 
 ?>
 
-
-<!--=============================================>>>>>
-= PLUGINS JS =
-===============================================>>>>>-->
-<script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/jquery.flexslider.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/sweetalert.min.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/jqBootstrapValidation.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/agency.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
 <!--=============================================>>>>>
 = JS PERSONALES =
 ===============================================>>>>>-->
+<script src="<?php echo $url; ?>vistas/js/plugins/agency.js"></script>
+
 <script src="<?php echo $url;?>vistas/js/presentacion.js"></script>
 
 <script src="<?php echo $url;?>vistas/js/header.js"></script>
+
+<script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
+
 
 
 </body>

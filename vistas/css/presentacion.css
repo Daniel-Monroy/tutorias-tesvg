@@ -392,24 +392,24 @@ nav.menu-actividades a i
 /*=============================================================
 =MODAL LOGIN  =
 ===============================================================*/
-#modalLogin{
+.modales{
   background-color: rgba(255,255,240,0.3);
 }
 
-#modalLogin .modal-content{
+.modales .modal-content{
   text-align: center;
 }
 
-#modalLogin .facebook{
+.modales .facebook{
   background-color: #46639f;
   color: white;
   padding: 5  px;
 }
 
-#modalLogin .facebook p i{
+.modales .facebook p i{
   margin-right: 10px;
 }
 
-#modalLogin .facebook p{
+.modales .facebook p{
   font-size: 18px;
 }

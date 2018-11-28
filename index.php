@@ -14,6 +14,10 @@ require_once "modelos/rutas.php";
 require_once "modelos/plantilla.modelo.php";
 require_once "modelos/actividades.modelo.php";
 require_once "modelos/usuarios.modelo.php";
+/*=============================================>>>>>
+= LIBRERIAS =
+===============================================>>>>>*/
+require_once "extenciones/PHPMailer/PHPMailerAutoload.php";
 
 
 /*=============================================>>>>>

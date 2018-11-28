@@ -15,7 +15,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Tutorias</a>
+                <a class="navbar-brand page-scroll" href="<?php echo $url; ?>">TUTORIAS</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,7 +37,7 @@
                         <a class="page-scroll" href="#team">Historia</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Somos...</a>
+                        <a class="page-scroll" href="#somos">Somos...</a>
                     </li>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
             <div class="intro-text">
                 <div class="intro-lead-in">Ingeneria en Sistemas Computacionales</div>
                 <div class="intro-heading">Tutorias</div>
-                <a href="#modalLogin" data-toggle="modal" class="page-scroll btn btn-xl">Iniciar</a>
+                <a href="#modalInicio" data-toggle="modal" class="page-scroll btn btn-xl">Iniciar</a>
             </div>
         </div>
     </header>
@@ -252,7 +252,7 @@
     </section>
 
 
-  	<section class="clearfix countUpSection">
+  	<section class="clearfix countUpSection" id="somos">
   		<div class="container">
 
   			<div class="page-header text-center">
@@ -290,7 +290,7 @@
   			<div class="row">
   				<div class="col-xs-12">
   					<div class="btnArea text-center">
-  						<a href="#modalLogin" data-toggle="modal" class="btn btn-primary">INICIAR</a>
+  						<a href="#modalInicio" data-toggle="modal" class="btn btn-primary">INICIAR</a>
   					</div>
   				</div>
   			</div>
@@ -299,7 +299,7 @@
 
     <div class="container-fluid">
 
-      <div class="modal fade login in" id="modalLogin" aria-hidden="true">
+      <div class="modal fade login in modales" id="modalInicio" style="overflow-y: scroll;"  aria-hidden="true">
   		      <div class="modal-dialog login animated">
       		      <div class="modal-content">
       		         <div class="modal-header">
@@ -324,10 +324,14 @@
                                   </div>
                                   <div class="error"></div>
                                   <div class="form loginBox">
-                                      <form method="" action="" accept-charset="UTF-8">
-                                      <input id="email" class="form-control" type="text" placeholder="Correo Electronico" name="email">
-                                      <input id="password" class="form-control" type="password" placeholder="Contraseña" name="password">
-                                      <input class="btn btn-default btn-login backColor" type="button" value="Inicio" onclick="loginAjax()">
+                                      <form method="post" onsubmit="return validateForm()">
+                                        <input id="emailIngreso" required class="form-control" type="text" placeholder="Correo Electronico" name="emailIngreso">
+                                        <input id="passwordIngreso"  class="form-control" type="password" placeholder="Contraseña" name="passwordIngreso">
+                                          <?php
+                                            $inicio = new ControladorUsuarios();
+                                            $inicio -> ctrLoginUsuario();
+                                          ?>
+                                        <input class="btn btn-default btn-login backColor" type="submit" value="Inicio">
                                       </form>
                                   </div>
                                </div>
@@ -335,7 +339,44 @@
                       </div>
                       <div class="modal-footer">
                           <div class="forgot register-footer" style="">
-                               <span>Olvidaste Tu Contraseña</span>
+                              <a href="#modalOlvido" data-toggle="modal" data-dismiss="modal"><span>¿Olvidaste Tu Contraseña?</span></a>
+                          </div>
+                      </div>
+      		      </div>
+  		      </div>
+  		  </div>
+    </div>
+
+
+    <div class="container-fluid">
+
+      <div class="modal fade login in modales" id="modalOlvido"  style="overflow-y: scroll;" aria-hidden="true">
+  		      <div class="modal-dialog login animated">
+      		      <div class="modal-content">
+      		         <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h2 class="modal-title">Olvido de Contraseña..</h2>
+                          <span class="text-muted">Ingresa tu EMAIL y en breve se te enviara información que te ayudara</span>
+                      </div>
+                      <div class="modal-body">
+                          <div class="box">
+                               <div class="content">
+                                  <div class="form loginBox">
+                                      <form method="post">
+                                        <input id="emailIngreso" required class="form-control" type="text" placeholder="Correo Electronico" name="emailOlvido">
+                                          <?php
+                                            $password = new ControladorUsuarios();
+                                            $password -> ctrOlvidoPassword();
+                                          ?>
+                                        <input class="btn btn-default btn-login backColor" type="submit" value="Enviar">
+                                      </form>
+                                  </div>
+                               </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <div class="forgot register-footer" style="">
+                              <a href="#modalInicio" data-toggle="modal" data-dismiss="modal"><span>Iniciar Sesión</span></a>
                           </div>
                       </div>
       		      </div>
