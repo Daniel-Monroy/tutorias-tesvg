@@ -5,6 +5,38 @@
 class ControladorActividades
 {
 
+  # =====================================
+  # =MOSTRAR SUB-ACTIVIDADES           =
+  # =====================================
+  public function ctrMostrarSubActividades($item, $valor){
+
+    $tabla = "sub_actividades";
+
+    $respuesta = ModeloActividades::mdlMostrarSubActividades($tabla, $item, $valor);
+
+    return $respuesta;
+
+  }
+
+
+  # =====================================
+  # = LISTAR SUB-ACTIVIDADES           =
+  # =====================================
+  public function ctrListarSubActividades($item, $valor){
+
+    $tabla = "sub_actividades";
+
+    $respuesta = ModeloActividades::mdlListarSubActividades($tabla, $item, $valor);
+
+    return $respuesta;
+
+  }
+
+
+
+  # =====================================
+  # =MOSTRAR ACTIVIDADES           =
+  # =====================================
   public function ctrMostrarActividades($item, $value){
 
     $tabla = "actividades";
@@ -47,7 +79,7 @@ class ControladorActividades
 
   public function ctrAcercaDe(){
 
-    $tabla = "acercaDe";
+    $tabla = "acercade";
 
     $respuesta = ModeloActividades::mdlAcercaDe($tabla);
 

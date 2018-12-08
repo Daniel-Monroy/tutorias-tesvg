@@ -205,13 +205,12 @@ REDES SOCIALES
 		 text-shadow:4px 4px 1px #dadada;
 	 }
 
-	 	.footer-nav{
-	 		height: 150px;
-			padding-bottom: 20px;
-	 	}
-
-		.countUpSection{
-			margin-bottom: 90px;
+		.footer-nav{
+			margin-top: 0px;
+			padding: 0 0 5px 0!important;
+			height: 150px;
+			position: relative;
+			height: 150px;
 		}
 
  }
@@ -232,12 +231,11 @@ REDES SOCIALES
 	}
 
 	.footer-nav{
+		margin-top: 0px;
 		padding: 0 0 5px 0!important;
 		height: 150px;
+		position: relative;
 	}
 
-	.countUpSection{
-		margin-bottom: 100px;
-	}
 
 }

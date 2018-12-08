@@ -156,9 +156,9 @@ if(!$_SESSION) {
 
       include "modulos/descripcion-actividad.php";
 
-    } else if ($rutas[0] == "salir"){
+    } else if ($rutas[0] == "salir" || $rutas["0"]){
 
-      include "modulos/salir.php";
+      include "modulos/".$rutas[0].".php";
 
     } else {
 

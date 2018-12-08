@@ -20,7 +20,7 @@
     ===============================================>>>>>*/
     public function ctrRutaServidor(){
 
-      return "http://chamoysteam.xyz/tutorias-admin/";
+      return "http://localhost/backendTutorias/";
 
     }
 

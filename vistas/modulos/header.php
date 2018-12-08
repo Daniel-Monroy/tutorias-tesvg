@@ -92,7 +92,7 @@ TOP
 
 						}
 						?>
-					<li><a style="color: <?php echo $estiloPlantilla['textoSuperior']; ?>" href="#modalIngreso" data-toggle="modal">Ver Perfil</a></li>
+					<li><a style="color: <?php echo $estiloPlantilla['textoSuperior']; ?>" href="<?php echo $url ?>perfil" data-toggle="modal">Ver Perfil</a></li>
 
 					<li>|</li>
 
@@ -220,17 +220,31 @@ HEADER
 						<a href="'.$value["ruta"].'" class="pixelCategorias">  '.$value["categoria"].' </a>
 					</h4>
 
-					<hr>
+					<hr> ';
 
-					<ul>
+					$item = "id_actividad";
 
-						<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-						<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-						<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-						<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-						<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+					$valor = $value["id"];
 
-					</ul>
+					$subActiviades = ControladorActividades::ctrListarSubActividades($item, $valor);
+
+					foreach ($subActiviades as $key => $value) {
+
+						echo '
+					
+							<ul>
+
+								<li><a href="'.$value["ruta"].'" class="pixelSubCategorias">'.$value["nombre"].'</a></li>
+
+							</ul>
+
+
+						';
+
+					}
+
+
+					echo '
 
 				</div>
 				';
