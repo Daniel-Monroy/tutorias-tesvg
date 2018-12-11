@@ -133,7 +133,6 @@ if(!$_SESSION) {
 
   $rutas = explode("/", $_GET["ruta"]);
 
-
     $item = "ruta";
 
     $value =  $rutas[0];
@@ -143,20 +142,23 @@ if(!$_SESSION) {
     ===============================================>>>>>*/
     $actividadesCategoria = ControladorActividades::ctrMostrarActividades($item, $value);
 
-    if ($rutas[0] == $actividadesCategoria["ruta"] ) {
+    $subActividades = ControladorActividades::ctrMostrarSubActividades($item, $value);
+
+
+    if ($rutas[0] == $actividadesCategoria["ruta"] || $rutas[0] == $subActividades["ruta"] ) {
 
       $ruta = $rutas[0];
 
     }
+
     /*=============================================>>>>>
     = URL AMIGABLE DE ACTIVIDADES - SUBCATEGIRIAS =
     ===============================================>>>>>*/
-
-    if ($ruta != null || $rutas[0] == "ficha-tutorado" || $rutas[0] == "linea-vida" || $rutas[0] == "foda") {
+    if ($ruta != null || $rutas[0] == $actividadesCategoria["ruta"]  || $rutas == $subActividades["ruta"]) {
 
       include "modulos/descripcion-actividad.php";
 
-    } else if ($rutas[0] == "salir" || $rutas["0"]){
+    } else if ($rutas[0] == "salir" || $rutas[0] == "perfil"){
 
       include "modulos/".$rutas[0].".php";
 
@@ -188,6 +190,8 @@ include "modulos/footer.php";
 <script src="<?php echo $url;?>vistas/js/header.js"></script>
 
 <script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
+
+<script src="<?php echo $url;?>vistas/js/actividades.js"></script>
 
 
 

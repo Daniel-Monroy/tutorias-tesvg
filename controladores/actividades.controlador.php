@@ -1,14 +1,11 @@
 <?php
-/*=============================================>>>>>
-= MOSTRAR LAS CATEGORIAS DE ACTIVIDADES =
-===============================================>>>>>*/
 class ControladorActividades
 {
 
   # =====================================
   # =MOSTRAR SUB-ACTIVIDADES           =
   # =====================================
-  public function ctrMostrarSubActividades($item, $valor){
+  static public function ctrMostrarSubActividades($item, $valor){
 
     $tabla = "sub_actividades";
 
@@ -22,7 +19,7 @@ class ControladorActividades
   # =====================================
   # = LISTAR SUB-ACTIVIDADES           =
   # =====================================
-  public function ctrListarSubActividades($item, $valor){
+  static public function ctrListarSubActividades($item, $valor){
 
     $tabla = "sub_actividades";
 
@@ -37,7 +34,7 @@ class ControladorActividades
   # =====================================
   # =MOSTRAR ACTIVIDADES           =
   # =====================================
-  public function ctrMostrarActividades($item, $value){
+  static public function ctrMostrarActividades($item, $value){
 
     $tabla = "actividades";
 
@@ -47,7 +44,7 @@ class ControladorActividades
 
   }
 
-  public function ctrPortafolioActividades(){
+  static public function ctrPortafolioActividades(){
 
     $tabla = "portafolio";
 
@@ -57,7 +54,7 @@ class ControladorActividades
 
   }
 
-  public function ctrMostrarMensajes(){
+  static public function ctrMostrarMensajes(){
 
     $tabla = "mensajes";
 
@@ -77,7 +74,7 @@ class ControladorActividades
 
   }
 
-  public function ctrAcercaDe(){
+  static public function ctrAcercaDe(){
 
     $tabla = "acercade";
 
@@ -87,5 +84,83 @@ class ControladorActividades
 
   }
 
+
+  static public function ctrCargarActividad(){
+
+    if (isset($_FILES["nuevoPDF"])) {
+      
+      $directorio = "vistas/actividades/alumnos/".$_POST["numeroControl"];
+
+      mkdir($directorio, 0755);
+
+      $documento = $directorio.'/'.$_POST["nombreArchivo"].'.pdf';
+  
+      if (move_uploaded_file($_FILES['nuevoPDF']['tmp_name'], $documento)) {
+
+          $tabla = "actividades_alumnos";
+
+          $datos = array('id_alumno' => $_POST["idAlumno"], 'idActividad' => $_POST["idActividad"], 'ruta' => $documento);
+
+          $respuesta = ModeloActividades::mdlActividadesCreadas($tabla, $datos);
+
+          if ($respuesta == "ok") {
+          
+           echo ' 
+             <script>
+                 swal({
+                    title: "¡Bien echo!",
+                    text: "¡Tu actividad ha sido almacenada con éxito, en breve notificaremos a tu Tutor!",
+                    type: "success",
+                    confirmButtonText: "Cerrar",
+                    closeOnConfirm: false
+                },function(isConfirm){
+                     if (isConfirm) {
+                        window.location = "'.$_POST["ruta"].'";
+                      }
+                });
+              </script>
+           ';
+          
+          }
+      
+      } else {
+        echo ' 
+         
+         <script>
+         
+           swal({
+              title: "¡Error!",
+              text: "¡Intenta una vez más!",
+              type: "error",
+              confirmButtonText: "Cerrar",
+              closeOnConfirm: false
+          },function(isConfirm){
+               if (isConfirm) {
+                  window.location = "'.$_POST["ruta"].'";
+                }
+          });
+         
+          </script>
+         
+         ';
+
+      }
+
+    }
+
+  }
+
+  # =====================================
+  # =MOSTRAR ACTIVIDADES REALIZADAS          =
+  # =====================================
+  static public function ctrMostrarActividadesRealizadas($item1, $valor1, $item2, $valor2){
+
+    $tabla = "actividades_alumnos";
+
+    $respuesta = ModeloActividades::mdlMostrarActividadesRealizadas($tabla, $item1, $valor1, $item2, $valor2);
+
+    return $respuesta;
+
+  }
 
 }
