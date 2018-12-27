@@ -30,7 +30,49 @@ $servidor = Ruta::ctrRutaServidor();
 
 </div>
 
-<section id="servicios" class="bg-muted">
+
+    <!-- Portfolio Grid -->
+	<section class="bg-muted" id="portfolio">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="servicios-heading text-uppercase">Portafolio</h2>
+					<h3 class="section-subheading text-muted">Actividades de nuestro día a día</h3>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<?php
+
+				$portafolio = ControladorActividades::ctrPortafolioActividades();
+
+				foreach ($portafolio as $key => $value) {
+
+				echo '
+
+					<div class="col-md-4 col-sm-6 portfolio-item">
+						<a class="portfolio-link">
+							<img class="img-responsive" widht="50" src="'.$servidor.$value["img"].'" alt="">
+						</a>
+						<div class="portfolio-caption">
+							<h4>'.$value["titulo"].'</h4>
+							<p class="text-muted">'.$value["subtitulo"].'</p>
+						</div>
+					</div> ';
+
+				}
+
+				?>
+
+			</div>
+		</div>
+	</section>
+
+
+
+<section id="servicios" class="bg-light">
 
 	<div class="container">
 
@@ -75,47 +117,6 @@ $servidor = Ruta::ctrRutaServidor();
 	</div>
 
 </section>
-
-
-<!-- Portfolio Grid -->
-	<section class="bg-light" id="portfolio">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="servicios-heading text-uppercase">Portfolio</h2>
-					<h3 class="section-subheading text-muted">Actividades de nuestro día a día</h3>
-				</div>
-			</div>
-
-			<div class="row">
-
-				<?php
-
-				$portafolio = ControladorActividades::ctrPortafolioActividades();
-
-				foreach ($portafolio as $key => $value) {
-
-				echo '
-
-					<div class="col-md-4 col-sm-6 portfolio-item">
-						<a class="portfolio-link">
-							<img class="img-responsive" widht="50" src="'.$servidor.$value["img"].'" alt="">
-						</a>
-						<div class="portfolio-caption">
-							<h4>'.$value["titulo"].'</h4>
-							<p class="text-muted">'.$value["subtitulo"].'</p>
-						</div>
-					</div> ';
-
-				}
-
-				?>
-
-			</div>
-		</div>
-	</section>
-
 
 	<section id="team" class="bg-muted">
 		<div class="container">
@@ -191,13 +192,14 @@ $servidor = Ruta::ctrRutaServidor();
 							<div class="row">
 
 								<?php
+
 									/*=============================================>>>>>
 									= ACTIVIDADES PENDIENTES =
 									===============================================>>>>>*/
 
 									$item1 = "id_alumno";
 
-									$value1 = "juan";
+									$value1 = $_SESSION["id"];
 
 									$item2 = "fecha";
 

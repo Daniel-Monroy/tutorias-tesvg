@@ -20,15 +20,15 @@
   <!--=============================================>>>>>
   = PLUGINS CSS =
   ===============================================>>>>>-->
-  <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
 
-	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/flexslider.css">
+	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/flexslider.css">
 
-	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/sweetalert.css">
+	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/sweetalert.css">
 
-  <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/login-register.css">
+  <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/login-register.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
@@ -42,28 +42,17 @@
 
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
   <!-- Theme CSS -->
   <link href="<?php echo $url ?>vistas/css/agency.css" rel="stylesheet">
 
   <!--=============================================>>>>>
   = PERSONALIZADOS =
   ===============================================>>>>>-->
-  <link rel="stylesheet" href="<?php echo $url ?>vistas/css/plantilla.css">
-
-  <link rel="stylesheet" href="<?php echo $url ?>vistas/css/cabezote.css">
-
-  <link rel="stylesheet" href="<?php echo $url ?>vistas/css/presentacion.css">
-
-  <!-- Custom fonts for this template -->
-  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="<?php echo $url?>vistas/css/plantilla.css">
+  <link rel="stylesheet" href="<?php echo $url?>vistas/css/cabezote.css">
+  <link rel="stylesheet" href="<?php echo $url?>vistas/css/presentacion.css">
 
 
   <!--=============================================>>>>>

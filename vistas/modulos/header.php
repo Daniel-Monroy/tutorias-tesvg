@@ -143,7 +143,7 @@ HEADER
 
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
 
-					<p>CATEGORÍAS
+					<p>ACTIVIDADES
 
 						<span class="pull-right">
 							<i class="fa fa-bars" aria-hidden="true"></i>
