@@ -86,7 +86,7 @@
         
         <div class="col-xs-12 col-sm-4">
           
-          <img src="<?php echo $url.$subActividades["imagen"];?>" class="img-thumbnail" width="100%" alt="">
+          <img src="<?php echo $servidor.$subActividades["imagen"];?>" class="img-thumbnail" width="100%" alt="">
 
         </div>
 
@@ -138,7 +138,7 @@
               <div class="panel text-uppercase">Descargar Archivo</div>
 
               
-               <a href="<?php echo $url.$subActividades["ruta_archivo"];?>">
+               <a target="_blanck" href="<?php echo $servidor.$subActividades["ruta_archivo"];?>">
                 
                 <button class="btn btn-default backColor">Descargar</button>
 

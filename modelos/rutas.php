@@ -20,7 +20,7 @@
     ===============================================>>>>>*/
     public function ctrRutaServidor(){
 
-      return "http://localhost/backendTutorias/";
+      return "http://localhost/tutoriasBack/";
 
     }
 
