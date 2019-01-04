@@ -2,34 +2,42 @@
 class ControladorActividades
 {
 
+  # ================================
+  # =MOSTRAR UNA ACTIVIDAD REALIZADA 
+  # ================================
+  static public function ctrActividadRealizadaPorAlumno($item1, $valor1, $item2, $valor2){
+
+    $tabla = "actividades_alumnos";
+
+    $respuesta = ModeloActividades::mdlActividadRealizadaPorAlumno($tabla, $item1, $valor1, $item2, $valor2);
+
+    return $respuesta;
+  }
+
   # =====================================
-  # =MOSTRAR SUB-ACTIVIDADES           =
+  # =MOSTRAR TODAS ACTIVIDADES REALIZADAS
   # =====================================
-  static public function ctrMostrarSubActividades($item, $valor){
+  static public function ctrActividadesRealizadasPorAlumno($item, $valor){
+
+    $tabla = "actividades_alumnos";
+
+    $respuesta = ModeloActividades::mdlActividadesRealizadasPorAlumno($tabla, $item, $valor);
+
+    return $respuesta;
+  }
+
+  # ==============================================
+  # =MOSTRAR SUB-ACTIVIDADES POR GRUPO Y CATEGORIA
+  # ==============================================
+  static public function ctrMostrarSubActividadesbyGrupo($item1, $valor1, $item2, $valor2){
 
     $tabla = "sub_actividades";
 
-    $respuesta = ModeloActividades::mdlMostrarSubActividades($tabla, $item, $valor);
+    $respuesta = ModeloActividades::mdlMostrarSubActividadesbyGrupo($tabla, $item1, $valor1, $item2, $valor2);
 
     return $respuesta;
 
   }
-
-
-  # =====================================
-  # = LISTAR SUB-ACTIVIDADES           =
-  # =====================================
-  static public function ctrListarSubActividades($item, $valor){
-
-    $tabla = "sub_actividades";
-
-    $respuesta = ModeloActividades::mdlListarSubActividades($tabla, $item, $valor);
-
-    return $respuesta;
-
-  }
-
-
 
   # =====================================
   # =MOSTRAR ACTIVIDADES           =
@@ -44,47 +52,40 @@ class ControladorActividades
 
   }
 
-  static public function ctrPortafolioActividades(){
 
-    $tabla = "portafolio";
+  # ===================================
+  # =MOSTRAR 1 SUB-ACTIVIDAD
+  # ===================================
+  static public function ctrMostrarSubActividades($item, $valor){
 
-    $respuesta = ModeloActividades::mdlPortafolioActividades($tabla);
+    $tabla = "sub_actividades";
 
-    return $respuesta;
-
-  }
-
-  static public function ctrMostrarMensajes(){
-
-    $tabla = "mensajes";
-
-    $respuesta = ModeloActividades::mdlMostrarMensajes($tabla);
+    $respuesta = ModeloActividades::mdlMostrarSubActividades($tabla, $item, $valor);
 
     return $respuesta;
 
   }
 
-  static public function ctrActividadesPendientes($item1, $value1, $item2, $value2){
+  # ===================================
+  # =MOSTRAR TODAS LAS SUB-ACTIVIDADES
+  # ===================================
+  static public function ctrMostrarTodasSubActividades($item, $valor){
 
-    $tabla = "actividadesPendientes";
+    $tabla = "sub_actividades";
 
-    $respuesta = ModeloActividades::mdlMostrarActividadesPendientes($tabla, $item1, $value1, $item2, $value2);
-
-    return $respuesta;
-
-  }
-
-  static public function ctrAcercaDe(){
-
-    $tabla = "acercade";
-
-    $respuesta = ModeloActividades::mdlAcercaDe($tabla);
+    $respuesta = ModeloActividades::mdlMostrarTodasSubActividades($tabla, $item, $valor);
 
     return $respuesta;
 
   }
 
 
+
+
+
+  # ===================================
+  # =CARGAR ACTIVIDAD
+  # ===================================
   static public function ctrCargarActividad(){
 
     if (isset($_FILES["nuevoPDF"])) {
@@ -150,14 +151,41 @@ class ControladorActividades
 
   }
 
-  # =====================================
-  # =MOSTRAR ACTIVIDADES REALIZADAS          =
-  # =====================================
-  static public function ctrMostrarActividadesRealizadas($item1, $valor1, $item2, $valor2){
 
-    $tabla = "actividades_alumnos";
+  # =================
+  # = PORTAFOLIO 
+  # =================
+  static public function ctrPortafolioActividades(){
 
-    $respuesta = ModeloActividades::mdlMostrarActividadesRealizadas($tabla, $item1, $valor1, $item2, $valor2);
+    $tabla = "portafolio";
+
+    $respuesta = ModeloActividades::mdlPortafolioActividades($tabla);
+
+    return $respuesta;
+
+  }
+
+  # =================
+  # = MENSAJES 
+  # =================
+  static public function ctrMostrarMensajes(){
+
+    $tabla = "mensajes";
+
+    $respuesta = ModeloActividades::mdlMostrarMensajes($tabla);
+
+    return $respuesta;
+
+  }
+
+  # =================
+  # = ACERCA DE 
+  # =================
+  static public function ctrAcercaDe(){
+
+    $tabla = "acercade";
+
+    $respuesta = ModeloActividades::mdlAcercaDe($tabla);
 
     return $respuesta;
 

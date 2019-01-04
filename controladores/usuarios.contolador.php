@@ -1,26 +1,13 @@
 <?php
-  /*=============================================>>>>>
-  = USUARIOS CONTROLADOR =
-  ===============================================>>>>>*/
-  class ControladorUsuarios
-  {
 
-    /*=============================================>>>>>
-    = ACTUALIZAR USUARIO =
-    ===============================================>>>>>*/
-    static public function ctrActualizarUsuario($id, $item, $valor){
-
-      $tabla = "alumnos";
-
-      $respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla,$id, $item, $valor);
-
-      return $respuesta;
-
-    }
-
-    /*=============================================>>>>>
-    = MOSTRAR USUARIO =
-    ===============================================>>>>>*/
+/**
+ * ControladorUsuarios
+ */
+class ControladorUsuarios
+{
+    # =====================
+    # = MOSTRAR USUARIO   =
+    # =====================
     static public function ctrMostrarUsuario($id, $item, $valor){
 
       $tabla = "alumnos";
@@ -31,10 +18,228 @@
 
     }
 
-    /*=============================================>>>>>
-    = LOGIN TUTORADOS =
-    ===============================================>>>>>*/
-    public function ctrLoginUsuario(){
+
+    # =====================
+    # = EDITAR USUARIO  =
+    # =====================
+    public function ctrEditarAlumno(){
+
+      if (isset($_POST["editarNombre"])) {
+        
+        if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"]) && 
+            preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarApellidos"]) && 
+            preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/', $_POST["editarEmail"]) &&
+            preg_match('/^[a-zA-Z0-9]*$/', $_POST['editarPassword'])) {
+        
+            $ruta = $_POST["fotoActual"];
+            # =======================
+            # = VALIDAR IMAGEN      =
+            # =======================
+            if (isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])) {
+              
+              list($ancho, $alto) = getimagesize($_FILES["editarFoto"]["tmp_name"]);
+
+              $nuevoAncho = 500;
+
+              $nuevoAlto = 500;
+              # =======================
+              # = Crear Directorio para guardar la IMG      =
+              # =======================
+              $directorio = "vistas/img/alumnos/".$_POST["numeroControl"];
+
+              # ===============================================================
+              # = PRIMERO PREGUNTAMOS SI EXISTE UNA IMAGEN EN LA BASE DE DATOS=
+              # ===============================================================
+              if (!empty($_POST["fotoActual"])) {
+                
+                unlink($_POST["fotoActual"]);
+              
+              } else {
+
+                mkdir($directorio, 0755);
+            
+              }
+      
+              # ======================================================================================
+              # = DE ACUERDO EL TIPO DE ARCHIVO USAMOS EL MÉTODO CORRESPONDIENTE           =
+              # ======================================================================================
+              if ($_FILES["editarFoto"]["type"] == "image/jpeg") {
+              
+                # =======================
+                # = Guardo la imagen en el directorio=
+                # =======================
+
+                $aleatorio = mt_rand(100,999);
+
+                $ruta = "vistas/img/alumnos/".$_POST["numeroControl"]."/".$aleatorio.".jpg";
+
+                $origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
+
+                $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+                imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+                // imagecopyresized("imagen de destino", "origen", "0", "0", "0", "0", "$nuevoAncho", "$nuevoAlto", "$alto", "$ancho");
+
+                imagejpeg($destino, $ruta);
+
+              } 
+
+              if ($_FILES["editarFoto"]["type"] == "image/png") {
+              
+                # =======================
+                # = Guardo la imagen en el directorio      =
+                # =======================
+                $aleatorio = mt_rand(100,999);
+
+                $ruta = "vistas/img/alumnos/".$_POST["numeroControl"]."/".$aleatorio.".png";
+
+                $origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
+
+                $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+                imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+                // imagecopyresized("imagen de destino", "origen", "0", "0", "0", "0", "$nuevoAncho", "$nuevoAlto", "$alto", "$ancho");
+
+                imagepng($destino, $ruta);
+
+              }
+
+            } 
+
+            $tabla = "alumnos";
+
+            $item = "numeroControl";
+
+            $valor = $_POST["numeroControl"];
+
+            if ($_POST["editarPassword"] != "") {
+              
+              if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarPassword"])) {
+              
+                $encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+              } else {
+
+                echo ' 
+                <script> 
+                  swal({
+                    type: "error",
+                    title: "!Error!",
+                    text: "No se permiten caracteres especiales", 
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar",
+                    closeConfirmButton: false
+                  }).then((result)=>{
+                    if(result.value){
+                      window.location = "usuarios";
+                    }
+                  });
+                </script>
+                ';
+              
+              } 
+
+            } else {
+
+              $encriptar = $_POST["passwordActual"];
+            
+            } 
+
+            $datos = array(
+                   'id' => $_POST["id"], 
+                   'nombre' => $_POST["editarNombre"], 
+                   'apellidos' => $_POST["editarApellidos"], 
+                   'numeroControl' => $_POST["numeroControl"], 
+                   'id_carrera' => $_POST["editarCarrera"], 
+                   'id_grupo' => $_POST["editarGrupo"],  
+                   'email' => $_POST["editarEmail"], 
+                   'password' => $encriptar, 
+                   'foto' => $ruta,
+                   'modo' => "directo",
+                   'emailEncriptado' => "",
+                   'verificacion' => 0
+                );
+
+            $respuesta = ModeloUsuarios::mdlActualizarDatosUsuario($tabla, $datos, $item, $valor);
+
+            if ($respuesta == "ok") {
+
+              $_SESSION["validarSession"] = "ok";
+              $_SESSION["id"] = $datos["id"];
+              $_SESSION["nombre"] = $datos["nombre"];
+              $_SESSION["apellidos"] = $datos["apellidos"];
+              $_SESSION["numeroControl"] = $datos["numeroControl"];
+              $_SESSION["id_carrera"] = $datos["id_carrera"];
+              $_SESSION["id_grupo"] = $datos["id_grupo"];
+              $_SESSION["email"] = $datos["email"];
+              $_SESSION["password"] = $datos["password"];
+              $_SESSION["foto"] = $datos["foto"];
+              $_SESSION["modo"] = "directo";
+
+                echo'<script>
+                  swal({
+                      title: "¡LISTO!",
+                      text: "¡Tus datos han sido actualizados!",
+                      type: "success",
+                      confirmButtonText: "Cerrar",
+                      closeOnConfirm: false
+                  },
+
+                  function(isConfirm){
+                       if (isConfirm) {
+                         window.location = "perfil";
+                        }
+                  });
+
+                  </script>';
+            }
+
+          }  else {
+           
+            echo ' 
+            <script> 
+              swal({
+                type: "error",
+                title: "!Error!",
+                text: "Todos los campos son obligatorios y No se permiten caracteres especiales",  
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar",
+                closeConfirmButton: false
+              }).then((result)=>{
+                if(result.value){
+                  window.location = "perfil";
+                }
+              });
+            </script>
+            ';
+        
+        }
+
+      }
+
+    }
+
+
+    # =====================
+    # = ACTUALIZAR USUARIO=
+    # =====================
+    static public function ctrActualizarUsuario($item1, $valor1, $item2, $valor2){
+
+        $tabla = "alumnos";
+
+        $respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+
+        return $respuesta;
+
+    }
+
+ 
+    # =====================
+    # = LOGIN =
+    # =====================
+    static public function ctrLoginUsuario(){
 
       if (isset($_POST["emailIngreso"])) {
 
@@ -54,6 +259,7 @@
               if ($respuesta["email"] == $_POST["emailIngreso"] && $respuesta["password"] == $encriptar) {
 
                 if ($respuesta["verificacion"] == 1) {
+                
                   echo'<script>
                       swal({
                           title: "¡No has verificado tu EMAIL!",
@@ -67,22 +273,48 @@
                             }
                       });
                       </script>';
-                  } else {
+                  } 
+
+                    else {
+                    
                     $_SESSION["validarSession"] = "ok";
                     $_SESSION["id"] = $respuesta["id"];
                     $_SESSION["nombre"] = $respuesta["nombre"];
                     $_SESSION["apellidos"] = $respuesta["apellidos"];
                     $_SESSION["numeroControl"] = $respuesta["numeroControl"];
-                    $_SESSION["carrera"] = $respuesta["carrera"];
-                    $_SESSION["grupo"] = $respuesta["grupo"];
+                    $_SESSION["id_carrera"] = $respuesta["id_carrera"];
+                    $_SESSION["id_grupo"] = $respuesta["id_grupo"];
                     $_SESSION["email"] = $respuesta["email"];
                     $_SESSION["password"] = $respuesta["password"];
                     $_SESSION["foto"] = $respuesta["foto"];
                     $_SESSION["modo"] = $respuesta["modo"];
 
-                    echo '
-                      <script> window.location = "'.$url.'"; </script>;
-                    ';
+                    date_default_timezone_set('America/Mexico_City');
+                    
+                    $fecha = date('Y-m-d'); 
+
+                    $hora = date('H:i:s');
+
+                    $fechaActual = $fecha.' '.$hora;
+
+                    $item1 = "ultimo_login";
+
+                    $valor1 = $fechaActual;
+
+                    $item2 = "id";
+
+                    $valor2 = $respuesta["id"];
+
+                    $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+
+                    if ($ultimoLogin == "ok") {
+                     
+                      echo '
+
+                        <script> window.location = "'.$url.'"; </script>;
+                      
+                      ';
+                    }
 
                   }
 
@@ -124,10 +356,10 @@
 
     }
 
-    /*=============================================>>>>>
-    = OLVIDO DE PASSWORD =
-    ===============================================>>>>>*/
-    public function ctrOlvidoPassword(){
+    # ======================
+    # = OLVIDO DE CONTRASEÑA
+    # ======================
+    static public function ctrOlvidoPassword(){
 
       if (isset($_POST["emailOlvido"])) {
 
@@ -164,13 +396,15 @@
 
           if ($respuesta1) {
 
-            $id = $respuesta1["id"];
+            $item1 = "password";
 
-            $item2 = "password";
+            $valor1 = $encriptar;
 
-            $valor2 = $encriptar;
+            $item2 = "id";
 
-            $respuesta2 = ModeloUsuarios::mdlActualizarUsuario($tabla,$id, $item2, $valor2);
+            $valor2 = $respuesta1["id"];
+
+            $respuesta2 = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
             if ($respuesta2 == "ok") {
 
@@ -302,10 +536,10 @@
 
     }
     
-    /*=============================================>>>>>
-    = MOSTRAR TUTORES =
-    ===============================================>>>>>*/
-    public function ctrMostrarTutores(){
+    # ======================
+    # = MOSTRAR TUTORES
+    # ======================
+    static public function ctrMostrarTutores(){
 
       $tabla = "tutores";
 
@@ -315,10 +549,10 @@
 
     }
 
-    /*=============================================>>>>>
-    = MOSTRAR COMUNIDAD =
-    ===============================================>>>>>*/
-    public function ctrMostrarComunidad(){
+    # ======================
+    # = MOSTRAR COMUNIDAD 
+    # ======================
+    static public function ctrMostrarComunidad(){
 
       $tabla = "informacion";
 
@@ -327,208 +561,5 @@
       return $respuesta;
 
     }
-
-
-  # ======================================
-  # =  EDITAR USUARIO           =
-  # ======================================
-  public function ctrEditarAlumno(){
-
-    if (isset($_POST["editarNombre"])) {
-      
-      if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"]) && 
-          preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarApellidos"]) && 
-          preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/', $_POST["editarEmail"]) &&
-          preg_match('/^[a-zA-Z0-9]*$/', $_POST['editarPassword'])) {
-      
-          $ruta = $_POST["fotoActual"];
-          # =======================
-          # = VALIDAR IMAGEN      =
-          # =======================
-          if (isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])) {
-            
-            list($ancho, $alto) = getimagesize($_FILES["editarFoto"]["tmp_name"]);
-
-            $nuevoAncho = 500;
-
-            $nuevoAlto = 500;
-            # =======================
-            # = Crear Directorio para guardar la IMG      =
-            # =======================
-            $directorio = "vistas/img/alumnos/".$_POST["numeroControl"];
-
-            # ===============================================================
-            # = PRIMERO PREGUNTAMOS SI EXISTE UNA IMAGEN EN LA BASE DE DATOS=
-            # ===============================================================
-            if (!empty($_POST["fotoActual"])) {
-              
-              unlink($_POST["fotoActual"]);
-            
-            } else {
-
-              mkdir($directorio, 0755);
-          
-            }
-    
-            # ======================================================================================
-            # =           DE ACUERDO EL TIPO DE ARCHIVO USAMOS EL MÉTODO CORRESPONDIENTE           =
-            # ======================================================================================
-            if ($_FILES["editarFoto"]["type"] == "image/jpeg") {
-            
-              # =======================
-              # = Guardo la imagen en el directorio=
-              # =======================
-
-              $aleatorio = mt_rand(100,999);
-
-              $ruta = "vistas/img/alumnos/".$_POST["numeroControl"]."/".$aleatorio.".jpg";
-
-              $origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);
-
-              $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-              imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-              // imagecopyresized("imagen de destino", "origen", "0", "0", "0", "0", "$nuevoAncho", "$nuevoAlto", "$alto", "$ancho");
-
-              imagejpeg($destino, $ruta);
-
-            } 
-
-            if ($_FILES["editarFoto"]["type"] == "image/png") {
-            
-              # =======================
-              # = Guardo la imagen en el directorio      =
-              # =======================
-              $aleatorio = mt_rand(100,999);
-
-              $ruta = "vistas/img/alumnos/".$_POST["numeroControl"]."/".$aleatorio.".png";
-
-              $origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);
-
-              $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-              imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-              // imagecopyresized("imagen de destino", "origen", "0", "0", "0", "0", "$nuevoAncho", "$nuevoAlto", "$alto", "$ancho");
-
-              imagepng($destino, $ruta);
-
-            }
-
-          } 
-
-          $tabla = "alumnos";
-
-          $item = "numeroControl";
-
-          $valor = $_POST["numeroControl"];
-
-          if ($_POST["editarPassword"] != "") {
-            
-            if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarPassword"])) {
-            
-              $encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
-            } else {
-
-              echo ' 
-              <script> 
-                swal({
-                  type: "error",
-                  title: "!Error!",
-                  text: "No se permiten caracteres especiales", 
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeConfirmButton: false
-                }).then((result)=>{
-                  if(result.value){
-                    window.location = "usuarios";
-                  }
-                });
-              </script>
-              ';
-            
-            } 
-
-          } else {
-
-            $encriptar = $_POST["passwordActual"];
-          
-          } 
-
-          $datos = array(
-                 'id' => $_POST["id"], 
-                 'nombre' => $_POST["editarNombre"], 
-                 'apellidos' => $_POST["editarApellidos"], 
-                 'numeroControl' => $_POST["numeroControl"], 
-                 'carrera' => $_POST["editarCarrera"], 
-                 'grupo' => $_POST["editarGrupo"],  
-                 'email' => $_POST["editarEmail"], 
-                 'password' => $encriptar, 
-                 'foto' => $ruta,
-                 'modo' => "directo",
-                 'emailEncriptado' => "",
-                 'verificacion' => 0
-              );
-
-          $respuesta = ModeloUsuarios::mdlActualizarDatosUsuario($tabla, $datos, $item, $valor);
-
-          if ($respuesta == "ok") {
-
-            $_SESSION["validarSession"] = "ok";
-            $_SESSION["id"] = $datos["id"];
-            $_SESSION["nombre"] = $datos["nombre"];
-            $_SESSION["apellidos"] = $datos["apellidos"];
-            $_SESSION["numeroControl"] = $datos["numeroControl"];
-            $_SESSION["carrera"] = $datos["carrera"];
-            $_SESSION["grupo"] = $datos["grupo"];
-            $_SESSION["email"] = $datos["email"];
-            $_SESSION["password"] = $datos["password"];
-            $_SESSION["foto"] = $datos["foto"];
-            $_SESSION["modo"] = "directo";
-
-              echo'<script>
-                swal({
-                    title: "¡LISTO!",
-                    text: "¡Tus datos han sido actualizados!",
-                    type: "success",
-                    confirmButtonText: "Cerrar",
-                    closeOnConfirm: false
-                },
-
-                function(isConfirm){
-                     if (isConfirm) {
-                       window.location = "perfil";
-                      }
-                });
-
-                </script>';
-          }
-
-        }  else {
-         
-          echo ' 
-          <script> 
-            swal({
-              type: "error",
-              title: "!Error!",
-              text: "Todos los campos son obligatorios y No se permiten caracteres especiales",  
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-              closeConfirmButton: false
-            }).then((result)=>{
-              if(result.value){
-                window.location = "perfil";
-              }
-            });
-          </script>
-          ';
-      
-      }
-
-    }
-
-  }
 
 }

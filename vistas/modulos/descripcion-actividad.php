@@ -29,24 +29,27 @@
 
   <?php 
 
+    # =========================
+    # = MOSTRAR SUB-ACTIVIDADES 
+    # =========================  
     $item = "ruta";
 
     $valor = $rutas[0];
 
-    $subActividades = ControladorActividades::ctrMostrarSubActividades($item, $valor);
+    $subActividades = ControladorActividades::ctrMostrarSubActividades($item, $valor);;
+    
+    # ========================
+    # = ACTIVIDAD REALIZADA =
+    # ========================
+    $item1 = "id_alumno";
 
+    $valor1 = $_SESSION["id"];
 
-    $item1 = "id_actividad";
+    $item2 = "id_actividad";
 
-    $valor1 = $subActividades["id"];
+    $valor2 = $subActividades["id"];
 
-    $item2 = "id_alumno";
-
-    $valor2 = $_SESSION["id"];
-
-    $actividadesRealizadas = ControladorActividades::ctrMostrarActividadesRealizadas($item1, $valor1, $item2, $valor2);
-
-
+    $actividadesRealizadas = ControladorActividades::ctrActividadRealizadaPorAlumno($item1, $valor1, $item2, $valor2);
    ?>
 
   <h3><?php echo $subActividades["nombre"]; ?></h3>

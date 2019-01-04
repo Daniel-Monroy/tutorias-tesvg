@@ -19,7 +19,7 @@ $servidor = Ruta::ctrRutaServidor();
       <ul class="breadcrumb lead fondoBreadcrumb text-uppercase">
 
            <li class="active">
-             <a href="<?php echo $url;  ?>">INICIO/</a>
+             <a href="<?php echo $url;?>">INICIO/</a>
            </li>
 
       </ul>
@@ -31,84 +31,71 @@ $servidor = Ruta::ctrRutaServidor();
 </div>
 
 
-    <!-- Portfolio Grid -->
-	<section class="bg-muted" id="portfolio">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="servicios-heading text-uppercase">Portafolio</h2>
-					<h3 class="section-subheading text-muted">Actividades de nuestro día a día</h3>
-				</div>
-			</div>
-
-			<div class="row">
-
-				<?php
-
-				$portafolio = ControladorActividades::ctrPortafolioActividades();
-
-				foreach ($portafolio as $key => $value) {
-
-				echo '
-
-					<div class="col-md-4 col-sm-6 portfolio-item">
-						<a class="portfolio-link">
-							<img class="img-responsive" widht="50" src="'.$servidor.$value["img"].'" alt="">
-						</a>
-						<div class="portfolio-caption">
-							<h4>'.$value["titulo"].'</h4>
-							<p class="text-muted">'.$value["subtitulo"].'</p>
-						</div>
-					</div> ';
-
-				}
-
-				?>
-
-			</div>
-		</div>
-	</section>
-
-
-
-<section id="servicios" class="bg-light">
-
+<!-- ACTIVIsDADES REALIZADAS -->
+<section class="bg-muted" id="portfolio">
+	
 	<div class="container">
 
 		<div class="row">
-
+		
 			<div class="col-lg-12 text-center">
-
-				<h2 class="servicios-heading text-uppercase">Mensajes para ti</h2>
-				<h3 class="section-subheading text-muted">Nuestros dirigentes se preocupan por ti</h3>
-
+				<h2 class="servicios-heading text-uppercase">PORTAFOLIO</h2>
+				
+				<h3 class="section-subheading text-muted">Las actividades que has realizado</h3>
+			
 			</div>
-
+		
 		</div>
 
-		<div class="row text-center mensajes">
+		<div class="row">
 
 			<?php
 
-				$mensajes = ControladorActividades::ctrMostrarMensajes();
+			$item = "id_alumno";
 
-				foreach ($mensajes as $key => $value) {
+			$valor = $_SESSION["id"];
 
+			#Todas las Actividades
+			$actividadesRealizadas = ControladorActividades::ctrActividadesRealizadasPorAlumno($item, $valor);
+			
+			foreach ($actividadesRealizadas as $key => $value) {
+				
+				$itemSubActividad = "id";
+
+				$valorSubActiviad = $value["id_actividad"];
+
+				$subActividad = ControladorActividades::ctrMostrarTodasSubActividades($itemSubActividad, $valorSubActiviad);
+				
+				foreach ($subActividad as $key => $value1) {
+					
 					echo '
 
-					<div class="col-sm-4">
-						<span class="fa-stack fa-5x">
-							<i class="fa fa-circle fa-stack-2x text-primary"></i>
-							<i class="fa '.$value["icono"].' fa-stack-1x fa-inverse"></i>
-						</span>
-						<h4 class="servicios-heading">'.$value["nombre"].' <br> <small>Director</small></h4>
-						<p class="text-muted">'.$value["mensaje"].'.</p>
-					</div>
+					<div class="col-md-4 col-sm-6 portfolio-item">
+					
+						<a class="portfolio-link">
+					
+							<img class="img-responsive" widht="50" src="'.$servidor.$value1["imagen"].'" alt="">
+					
+						</a>
+					
+						<div class="portfolio-caption">
+					
+							<h4>'.$value1["nombre"].'</h4>';
 
-					';
+							$itemActividad = "id";
 
+							$valorActividad = $value1["id_actividad"];
+
+							$actividad = ControladorActividades::ctrMostrarActividades($itemActividad, $valorActividad);
+					
+							echo' <p class="text-muted">'.$actividad["categoria"].'</p>
+					
+						</div>
+					
+					</div> ';
 				}
+			
+			}
 
 			?>
 
@@ -118,123 +105,94 @@ $servidor = Ruta::ctrRutaServidor();
 
 </section>
 
-	<section id="team" class="bg-muted">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="servicios-heading text-uppercase">Nuestros Profesores</h2>
-					<h3 class="section-subheading text-muted">Algunos de ellos aparecen aquí.</h3>
-				</div>
+
+<hr>
+
+
+<section id="actividades" class="resumen-actividades">
+	
+	<div class="container-fluid">
+
+		<div class="row contenedor-video">
+
+			<div class="col-xs-12">
+
+				<img src="<?php echo $url ?>vistas/img/bg-talleres.jpg" alt="" class="imagen-actividades">
+
+				<video autoplay loop poster="<?php echo $url ?>vistas/img/bg-talleres.jpg" class="video-actividades">
+					<source src="<?php echo $url ?>vistas/img/video/video.mp4" type="video/mp4">
+					<source src="<?php echo $url ?>vistas/img/video/video.webm" type="video/webm">
+					<source src="<?php echo $url ?>vistas/img/video/video.ogv" type="video/ogg">
+				</video>
 			</div>
-
-			<div class="row">
-			<?php
-
-			$tutores = ControladorUsuarios::ctrMostrarTutores();
-
-			foreach ($tutores as $key => $value) {
-
-				echo '
-								<div class="col-sm-4">
-								<div class="team-member">
-									<img class="mx-auto img-circle" src="'.$servidor.$value["foto"].'" alt="">
-									<h4>'.$value["nombre"].'</h4>
-									<p class="text-muted">'.$value["profesion"].'</p>
-								</div>
-								</div>
-						 ';
-
-			}
-
-			?>
-			</div>
-
 		</div>
-	</section>
 
+		<div class="row text-center">
+			<div class="col-xs-12 contenido-actividades">
+				<h2 class="servicios-heading text-uppercase">Actividades Pendientes</h2>
+				<h3 class="section-subheading text-muted">Revisemos que tienes...</h3>
 
-	<section id="actividades" class="resumen-actividades">
-		<div class="container-fluid">
+				<div class="row" style="display:none">
 
-			<div class="row contenedor-video">
-				<div class="col-xs-12">
-					<img src="<?php echo $url ?>vistas/img/bg-talleres.jpg" alt="" class="imagen-actividades">
-					<video autoplay loop poster="<?php echo $url ?>vistas/img/bg-talleres.jpg" class="video-actividades">
-						<source src="<?php echo $url ?>vistas/img/video/video.mp4" type="video/mp4">
-						<source src="<?php echo $url ?>vistas/img/video/video.webm" type="video/webm">
-						<source src="<?php echo $url ?>vistas/img/video/video.ogv" type="video/ogg">
-					</video>
-				</div>
-			</div>
+					<div class="col-xs-12 sinActividad">
 
-			<div class="row text-center">
-				<div class="col-xs-12 contenido-actividades">
-					<h2 class="servicios-heading text-uppercase">Actividades Pendientes</h2>
-					<h3 class="section-subheading text-muted">Revisemos que tienes...</h3>
+						<h1>Sin Actividades Pendientes</h1>
 
-					<div class="row" style="display:none">
-
-						<div class="col-xs-12 sinActividad">
-
-							<h1>Sin Actividades Pendientes</h1>
-
-							<h2>Verifica esto con tu Tutor</h2>
-
-						</div>
+						<h2>Verifica esto con tu Tutor</h2>
 
 					</div>
 
+				</div>
 
-					<div class="row">
 
-						<div id="talleres" class="col-xs-12 info-curso bg-muted">
-							<h3 class="tareas text-primary"> <span> <i class="fa fa-calendar"></i> </span> Tareas</h3>
-							<div class="row">
+				<div class="row">
 
-								<?php
+					<div id="talleres" class="col-xs-12 info-curso bg-muted">
+						<h3 class="tareas text-primary"> <span> <i class="fa fa-calendar"></i> </span> Tareas</h3>
+						<div class="row">
 
-									/*=============================================>>>>>
-									= ACTIVIDADES PENDIENTES =
-									===============================================>>>>>*/
+							<?php
 
-									$item1 = "id_alumno";
+								/*=============================================>>>>>
+								= ACTIVIDADES PENDIENTES =
+								===============================================>>>>>*/
 
-									$value1 = $_SESSION["id"];
+								// $item1 = "id_alumno";
 
-									$item2 = "fecha";
+								// $value1 = $_SESSION["id"];
 
-									$value2 = "DESC";
+								// $item2 = "fecha";
 
-									$actividades_pendientes = ControladorActividades::ctrActividadesPendientes($item1, $value1, $item2, $value2);
+								// $value2 = "DESC";
 
-									if ($actividades_pendientes != null) {
+								// $actividades_pendientes = ControladorActividades::ctrActividadesPendientes($item1, $value1, $item2, $value2);
 
-										foreach ($actividades_pendientes as $key => $value) {
-												echo '<div class="detalle-evento col-xs-12">
-																	<h3 class="text-primary">'.$value["actividad"].'</h3>
-																	<p><i class="fa fa-clock-o" aria-hidden="true"></i>'.$value["hora-actividad"].' hrs</p>
-																	<p><i class="fa fa-calendar" aria-hidden="true"></i>'.$value["fecha-actividad"].'</p>
-																	<p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez</p>
-															</div>
+								// if ($actividades_pendientes != null) {
 
-												';
-										}
-									} else {
+								// 	foreach ($actividades_pendientes as $key => $value) {
+								// 			echo '<div class="detalle-evento col-xs-12">
+								// 								<h3 class="text-primary">'.$value["actividad"].'</h3>
+								// 								<p><i class="fa fa-clock-o" aria-hidden="true"></i>'.$value["hora-actividad"].' hrs</p>
+								// 								<p><i class="fa fa-calendar" aria-hidden="true"></i>'.$value["fecha-actividad"].'</p>
+								// 								<p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez</p>
+								// 						</div>
 
-										echo '
+								// 			';
+								// 	}
+								// } else {
 
-										<div class="col-xs-12">
-											<h1>Sin Actividades Pendientes</h1>
-											<h2>@ChamoysTeam</h2>
-										</div>
+								// 	echo '
 
-										';
+								// 	<div class="col-xs-12">
+								// 		<h1>Sin Actividades Pendientes</h1>
+								// 		<h2>@ChamoysTeam</h2>
+								// 	</div>
 
-									}
-								 ?>
-							 </div>
+								// 	';
 
-						</div>
+								//}
+							 ?>
+						 </div>
 
 					</div>
 
@@ -244,4 +202,6 @@ $servidor = Ruta::ctrRutaServidor();
 
 		</div>
 
-	</section>
+	</div>
+
+</section>

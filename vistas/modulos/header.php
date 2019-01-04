@@ -140,15 +140,10 @@ HEADER
 				<!--=====================================
 				BOTÓN CATEGORÍAS
 				======================================-->
-
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
-
+				<div class="col-sm-4 col-xs-12 backColor" id="btnCategorias">
+				
 					<p>ACTIVIDADES
-
-						<span class="pull-right">
-							<i class="fa fa-bars" aria-hidden="true"></i>
-						</span>
-
+						<span class="pull-right"><i class="fa fa-bars" aria-hidden="true"></i></span>	
 					</p>
 
 				</div>
@@ -206,49 +201,60 @@ HEADER
 			$value = null;
 
 			$actividades = ControladorActividades::ctrMostrarActividades($item, $value);
-
+			
 		?>
 
 		<div class="col-xs-12 backColor" id="categorias">
+			
+			<?php 	
+		
+			foreach ($actividades as $key => $value) {
 
-			<?php foreach ($actividades as $key => $value){
-
-				echo '
+				echo '  
+				
 				<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
 
-					<h4 class="">
-						<a href="'.$value["ruta"].'" class="pixelCategorias">  '.$value["categoria"].' </a>
+					<h4> 
+	
+						<a href="#" class="pixelCategorias">'.$value["categoria"].'</a>
+
 					</h4>
 
-					<hr> ';
+					<hr>
 
-					$item = "id_actividad";
+					<ul>';
 
-					$valor = $value["id"];
 
-					$subActiviades = ControladorActividades::ctrListarSubActividades($item, $valor);
+					$item1 = "id_actividad";
 
-					foreach ($subActiviades as $key => $value) {
+					$valor1 = $value["id"];
 
-						echo '
-					
-							<ul>
+					$item2 = "id_grupo";
 
-								<li><a href="'.$value["ruta"].'" class="pixelSubCategorias">'.$value["nombre"].'</a></li>
+					$valor2 = $_SESSION["id_grupo"];
 
-							</ul>
+					$subActividades = ControladorActividades::ctrMostrarSubActividadesbyGrupo($item1, $valor1, $item2, $valor2);
 
+					foreach ($subActividades as $key => $value1) {
+						
+						echo '  
+						
+							<li><a href="'.$value1["ruta"].'" class="pixelSubCategoria">'.$value1["nombre"].'</a></li>
 
 						';
 
 					}
-
-
-					echo '
+				
+					echo'
+						
+					</ul>
 
 				</div>
-				';
-			} ?>
+
+				'; 
+			}
+
+			?>
 
 		</div>
 

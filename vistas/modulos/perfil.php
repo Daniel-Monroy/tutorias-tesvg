@@ -137,29 +137,53 @@
                   </div>
 
                 </div>  
+                  
 
+                <?php 
+
+                  $item = "id";
+
+                  $valor = $_SESSION["id_carrera"];
+
+                  $carrera = ControladorGrupos::ctrMostrarCarrera($item, $valor);
+        
+                 ?>
 
                  <!-- Entrada para la Carrera -->
                 <div class="form-group">
                     
                   <div class="input-group">
                     
-                    <span class="input-group-addon"> <i class="fa fa-graduation-cap"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
                        
-                    <input type="text" name="editarCarrera" readonly placeholder="Carrera" required class="form-control input-lg" value="<?php echo $_SESSION["carrera"]?>">   
+                    <input type="text" readonly placeholder="Carrera" required class="form-control input-lg" value="<?php echo $carrera["descripcion"]?>">   
+
+                    <input type="hidden" name="editarCarrera" value="<?php echo $carrera["id"]?>">
                   
                   </div>
-                  
+
                 </div>  
+
+                <?php 
+
+                  $item = "id";
+
+                  $valor = $_SESSION["id_grupo"];
+
+                  $grupo = ControladorGrupos::ctrMostrarGrupos($item, $valor);
+                
+                 ?>
       
-                 <!-- Entrada para los Grupo -->
+                <!-- Entrada para los Grupo -->
                 <div class="form-group">
                     
                   <div class="input-group">
                     
                     <span class="input-group-addon"> <i class="fa fa-users"></i></span>
                        
-                    <input type="text" name="editarGrupo" readonly placeholder="Grupo" required class="form-control input-lg" value="<?php echo $_SESSION["grupo"]?>">   
+                    <input type="text" readonly placeholder="Grupo" required class="form-control input-lg" value="<?php echo $grupo["nombre"]?>">   
+
+                    <input type="hidden" name="editarGrupo" value="<?php echo $grupo["id"]?>">
                   
                   </div>
                   
