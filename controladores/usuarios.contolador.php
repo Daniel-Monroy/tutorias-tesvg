@@ -8,7 +8,7 @@ class ControladorUsuarios
     # =====================
     # = MOSTRAR USUARIO   =
     # =====================
-    static public function ctrMostrarUsuario($id, $item, $valor){
+    static public function ctrMostrarUsuario($item, $valor){
 
       $tabla = "alumnos";
 

@@ -100,7 +100,24 @@
 
 if(!$_SESSION) {
 
-  include "modulos/presentacion.php";
+  if (isset($_GET["ruta"])) {
+
+    $rutas = array();
+
+    $rutas = explode("/", $_GET["ruta"]);
+
+    if ($rutas[0] == "verificar") {
+      
+      include "modulos/verificar.php";
+
+    }
+
+  } else {
+  
+     include "modulos/presentacion.php";
+  
+  }
+
 
 } else {
 
