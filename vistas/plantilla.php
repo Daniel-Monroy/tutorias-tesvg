@@ -66,29 +66,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-
-  <style>
-    <?php
-      $estiloPlantilla = ControladorPlantilla::ctrEstiloPlantilla();
-      /*=============================================>>>>>
-      = ESTILO GENERAL A LA PLANTILLA =
-      ===============================================>>>>>*/
-      echo '
-        .backColor, .backColor a{
-          background:'.$estiloPlantilla["colorFondo"].';
-          color:'.$estiloPlantilla["colorTexto"].';
-        }
-
-        .text-primary {
-          color: '.$estiloPlantilla["colorFondo"].'.!important;
-        }
-
-      ';
-
-    ?>
-
-  </style>
-
 </head>
 
 <body>
@@ -177,12 +154,18 @@ include "modulos/footer.php";
 
 ?>
 
+<input type="hidden" value="<?php echo $url;?>" id="rutaLocal">
+<input type="hidden" value="<?php echo $servidor;?>" id="rutaServidor">
+
+
 <!--=============================================>>>>>
 = JS PERSONALES =
 ===============================================>>>>>-->
 <script src="<?php echo $url; ?>vistas/js/plugins/agency.js"></script>
 
 <script src="<?php echo $url;?>vistas/js/presentacion.js"></script>
+
+<script src="<?php echo $url;?>vistas/js/plantilla.js"></script>
 
 <script src="<?php echo $url;?>vistas/js/header.js"></script>
 
