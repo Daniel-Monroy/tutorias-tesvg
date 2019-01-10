@@ -7,9 +7,9 @@ $servidor = Ruta::ctrRutaServidor();
 ?>
 
 
-<!--/*=============================================>>>>>
-=BREADCRUMB INICIO =
-===============================================>>>>>*/-->
+<!--=====================
+= BREADCRUMB            =
+======================-->
 <div class="container-fluid well well-sm">
 
   <div class="container">
@@ -31,7 +31,10 @@ $servidor = Ruta::ctrRutaServidor();
 </div>
 
 
-<!-- ACTIVIsDADES REALIZADAS -->
+
+<!--=====================
+ACTIVIDADES REALIZADAS  =
+======================-->
 <section class="bg-muted" id="portfolio">
 	
 	<div class="container">
@@ -39,6 +42,7 @@ $servidor = Ruta::ctrRutaServidor();
 		<div class="row">
 		
 			<div class="col-lg-12 text-center">
+				
 				<h2 class="servicios-heading text-uppercase">PORTAFOLIO</h2>
 				
 				<h3 class="section-subheading text-muted">Las actividades que has realizado</h3>
@@ -151,47 +155,40 @@ $servidor = Ruta::ctrRutaServidor();
 						<h3 class="tareas text-primary"> <span> <i class="fa fa-calendar"></i> </span> Tareas</h3>
 						<div class="row">
 
-							<?php
+							<div class="detalle-evento col-xs-12">
+								<h3 class="text-primary">Actividad ANALISIS FODA</h3>
+								<p>
+									<i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 a.m
+								</p>
+								<p>
+									<i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-14
+								</p>
+								<p>
+									<i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez
+								</p>
+							</div>
 
-								/*=============================================>>>>>
-								= ACTIVIDADES PENDIENTES =
-								===============================================>>>>>*/
+							<div class="detalle-evento col-xs-12">
+								
+								<h3 class="text-primary">Actividad LINEA DE LA VIDA</h3>
+								
+								<p>
+									<i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 a.m
+								</p>
+								<p>
+									<i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-14
+								</p>
+								
+								<p>
+									<i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez
+								</p>
+							</div>
 
-								// $item1 = "id_alumno";
 
-								// $value1 = $_SESSION["id"];
-
-								// $item2 = "fecha";
-
-								// $value2 = "DESC";
-
-								// $actividades_pendientes = ControladorActividades::ctrActividadesPendientes($item1, $value1, $item2, $value2);
-
-								// if ($actividades_pendientes != null) {
-
-								// 	foreach ($actividades_pendientes as $key => $value) {
-								// 			echo '<div class="detalle-evento col-xs-12">
-								// 								<h3 class="text-primary">'.$value["actividad"].'</h3>
-								// 								<p><i class="fa fa-clock-o" aria-hidden="true"></i>'.$value["hora-actividad"].' hrs</p>
-								// 								<p><i class="fa fa-calendar" aria-hidden="true"></i>'.$value["fecha-actividad"].'</p>
-								// 								<p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez</p>
-								// 						</div>
-
-								// 			';
-								// 	}
-								// } else {
-
-								// 	echo '
-
-								// 	<div class="col-xs-12">
-								// 		<h1>Sin Actividades Pendientes</h1>
-								// 		<h2>@ChamoysTeam</h2>
-								// 	</div>
-
-								// 	';
-
-								//}
-							 ?>
+								<!-- <div class="col-xs-12">
+									<h1>Sin Actividades Pendientes</h1>
+									<h2>@ChamoysTeam</h2>
+								</div> -->
 						 </div>
 
 					</div>

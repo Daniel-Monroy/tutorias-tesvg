@@ -17,12 +17,14 @@
     session_start();
 
   ?>
-  <!--=============================================>>>>>
-  = PLUGINS CSS =
-  ===============================================>>>>>-->
+
+
+  <!--======================
+  = PLUGINS CSS           =
+  =======================-->  
   <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
 
-	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
 
 	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/flexslider.css">
 
