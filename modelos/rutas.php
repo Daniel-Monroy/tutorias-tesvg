@@ -11,7 +11,7 @@
     ===============================================>>>>>*/
     public function ctrRuta(){
 
-      return "http://localhost/tutorias2/";
+      return "http://localhost/tutorias/";
 
     }
 
@@ -20,7 +20,7 @@
     ===============================================>>>>>*/
     public function ctrRutaServidor(){
 
-      return "http://localhost/tutoriasBack/";
+      return "http://localhost/tutorias-back/";
 
     }
 
