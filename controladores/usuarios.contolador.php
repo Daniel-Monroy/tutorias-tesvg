@@ -118,7 +118,7 @@ class ControladorUsuarios
               
               if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarPassword"])) {
               
-                $encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                $encriptar = crypt($_POST["editarPassword"], '$2a$07$asxy54ahjppf45sd87a5a4dDDGsystemdev$');
 
               } else {
 
@@ -246,7 +246,7 @@ class ControladorUsuarios
         if (preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/', $_POST["emailIngreso"]) &&
             preg_match('/^[a-zA-Z0-9]*$/', $_POST['passwordIngreso'])) {
 
-              $encriptar = crypt($_POST["passwordIngreso"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+              $encriptar = crypt($_POST["passwordIngreso"], '$2a$07$asxy54ahjppf45sd87a5a4dDDGsystemdev$');
 
               $tabla = "alumnos";
 
@@ -273,9 +273,24 @@ class ControladorUsuarios
                             }
                       });
                       </script>';
-                  } 
+                
+                } else if ($respuesta["activo"] != 1){
 
-                    else {
+                    echo'<script>
+                      swal({
+                          title: "¡INFORMA A TU TUTOR!",
+                          text: "¡Te ha sido bloqueado el acceso al sistema!",
+                          type: "error",
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                      },function(isConfirm){
+                           if (isConfirm) {
+                              history.back();
+                            }
+                      });
+                      </script>';
+
+                }  else {
                     
                     $_SESSION["validarSession"] = "ok";
                     $_SESSION["id"] = $respuesta["id"];
@@ -384,7 +399,7 @@ class ControladorUsuarios
 
           $nuevaPassword = generarPassword(11);
 
-          $encriptar = crypt($nuevaPassword, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+          $encriptar = crypt($nuevaPassword, '$2a$07$asxy54ahjppf45sd87a5a4dDDGsystemdev$');
 
           $tabla = "alumnos";
 
