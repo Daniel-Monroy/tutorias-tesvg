@@ -110,20 +110,17 @@ ACTIVIDADES REALIZADAS  =
 </section>
 
 
-<hr>
-
-
 <section id="actividades" class="resumen-actividades">
 	
-	<div class="container-fluid">
+	<div class="container-fluid video">
 
-		<div class="row contenedor-video">
+		<div class="row">
 
-			<div class="col-xs-12">
+			<div class="col-xs-12 multimendiaActividades">
 
-				<img src="<?php echo $url ?>vistas/img/bg-talleres.jpg" alt="" class="imagen-actividades">
+				<img src="<?php echo $url ?>vistas/img/bg-talleres.jpg">
 
-				<video autoplay loop poster="<?php echo $url ?>vistas/img/bg-talleres.jpg" class="video-actividades">
+				<video autoplay loop poster="<?php echo $url ?>vistas/img/bg-talleres.jpg" class="video-actividades img-responsive">
 					<source src="<?php echo $url ?>vistas/img/video/video.mp4" type="video/mp4">
 					<source src="<?php echo $url ?>vistas/img/video/video.webm" type="video/webm">
 					<source src="<?php echo $url ?>vistas/img/video/video.ogv" type="video/ogg">
@@ -152,10 +149,11 @@ ACTIVIDADES REALIZADAS  =
 				<div class="row">
 
 					<div id="talleres" class="col-xs-12 info-curso bg-muted">
+						
 						<h3 class="tareas text-primary"> <span> <i class="fa fa-calendar"></i> </span> Tareas</h3>
 						<div class="row">
 
-							<div class="detalle-evento col-xs-12">
+						<!-- 	<div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
 								<h3 class="text-primary">Actividad ANALISIS FODA</h3>
 								<p>
 									<i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 a.m
@@ -168,7 +166,7 @@ ACTIVIDADES REALIZADAS  =
 								</p>
 							</div>
 
-							<div class="detalle-evento col-xs-12">
+							<div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
 								
 								<h3 class="text-primary">Actividad LINEA DE LA VIDA</h3>
 								
@@ -182,13 +180,13 @@ ACTIVIDADES REALIZADAS  =
 								<p>
 									<i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez
 								</p>
-							</div>
+							</div> -->
 
 
-								<!-- <div class="col-xs-12">
+								<div class="col-xs-12">
 									<h1>Sin Actividades Pendientes</h1>
-									<h2>@ChamoysTeam</h2>
-								</div> -->
+									<h2>Tutorias TESVG</h2>
+								</div>
 						 </div>
 
 					</div>

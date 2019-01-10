@@ -140,11 +140,6 @@ section.resumen-actividades
   position: relative;/*para poder posicionar contenido sobre el*/
 }
 
-div.contenedor-video{
- width: 100%; /*Abarca el 100% del Padre*/
- overflow: hidden;/*No se salga del 100%*/
-}
-
 div.contenido-actividades
 {
  position: absolute;/*Para posicionarlo sobre el video de Fondo*/
@@ -319,13 +314,15 @@ nav.menu-actividades a i
 
 @media (min-width: 1200px){
 
-  video.video-actividades{
-    display: block;
-  }
+    video.video-actividades{
+     display: block;
+     width: 100%!important;
+     overflow: hidden;
+    }
 
-  .imagen-actividades{
+   .multimendiaActividades img{
     display: none;
-  }
+    }
 
 }
 
@@ -334,21 +331,33 @@ nav.menu-actividades a i
 ===============================================================*/
 
  @media (max-width: 1999px) and (min-width: 992px){
+   
    #talleres
    {
     margin-top: 20px;
     padding: 0 10px;
     width: 50%;
     margin-left: 50px;
+   }  
+
+   section h3.section-subheading {
+      margin-bottom: 10px!important;
    }
+
+   .multimendiaActividades{
+      width: 100%;
+      height: auto;
+    }
 
    video.video-actividades{
      display: block;
-   }
+     overflow: hidden;
+    }
 
-   .imagen-actividades{
-     display: none;
-   }
+   .multimendiaActividades img{
+    display: none;
+    }
+
 
 
  }
@@ -361,12 +370,14 @@ nav.menu-actividades a i
      display: none;
    }
 
-   .imagen-actividades{
-     display: block;
-   }
+   .multimendiaActividades img{
+      height: 650px;
+      width: 100%;
+    }
 
  }
-  /*=============================================================
+
+/*=============================================================
 = MOVIL (XS revisamos 320PX) =
 ===============================================================*/
 
@@ -383,8 +394,14 @@ nav.menu-actividades a i
     display: none;
   }
 
-  .imagen-actividades{
-    display: block;
+  section h3.section-subheading {
+      margin-bottom: 0px!important;
+  }
+
+  .multimendiaActividades img{
+    margin-top: 180px;
+    height: 500px;
+    width: 100%;
   }
 
 }
