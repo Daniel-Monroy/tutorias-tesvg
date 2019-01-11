@@ -131,19 +131,8 @@ ACTIVIDADES REALIZADAS  =
 		<div class="row text-center">
 			<div class="col-xs-12 contenido-actividades">
 				<h2 class="servicios-heading text-uppercase">Actividades Pendientes</h2>
+
 				<h3 class="section-subheading text-muted">Revisemos que tienes...</h3>
-
-				<div class="row" style="display:none">
-
-					<div class="col-xs-12 sinActividad">
-
-						<h1>Sin Actividades Pendientes</h1>
-
-						<h2>Verifica esto con tu Tutor</h2>
-
-					</div>
-
-				</div>
 
 
 				<div class="row">
@@ -151,9 +140,11 @@ ACTIVIDADES REALIZADAS  =
 					<div id="talleres" class="col-xs-12 info-curso bg-muted">
 						
 						<h3 class="tareas text-primary"> <span> <i class="fa fa-calendar"></i> </span> Tareas</h3>
+						
+
 						<div class="row">
 
-						<!-- 	<div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
+							<div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
 								<h3 class="text-primary">Actividad ANALISIS FODA</h3>
 								<p>
 									<i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 a.m
@@ -180,16 +171,17 @@ ACTIVIDADES REALIZADAS  =
 								<p>
 									<i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez
 								</p>
-							</div> -->
-
-
-								<div class="col-xs-12">
-									<h1>Sin Actividades Pendientes</h1>
-									<h2>Tutorias TESVG</h2>
-								</div>
+							
+							</div>
+						
 						 </div>
+						
+						<!-- <div class="col-xs-12">
+							<h1>Sin Actividades Pendientes</h1>
+							<h2>Tutorias TESVG</h2>
+						</div>-->
 
-					</div>
+					</div> 
 
 				</div>
 
