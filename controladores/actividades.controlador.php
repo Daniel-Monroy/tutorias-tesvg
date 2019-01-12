@@ -17,11 +17,11 @@ class ControladorActividades
   # =====================================
   # =MOSTRAR TODAS ACTIVIDADES REALIZADAS
   # =====================================
-  static public function ctrActividadesRealizadasPorAlumno($item, $valor){
+  static public function ctrActividadesRealizadasPorAlumno($item, $valor, $limite){
 
     $tabla = "actividades_alumnos";
 
-    $respuesta = ModeloActividades::mdlActividadesRealizadasPorAlumno($tabla, $item, $valor);
+    $respuesta = ModeloActividades::mdlActividadesRealizadasPorAlumno($tabla, $item, $valor, $limite);
 
     return $respuesta;
   }

@@ -60,11 +60,11 @@
     # ======================================
     # = MOSTRAR TODAS ACTIVIDADES REALIZADAS
     # ======================================
-    static public function mdlActividadesRealizadasPorAlumno($tabla, $item, $valor){
+    static public function mdlActividadesRealizadasPorAlumno($tabla, $item, $valor, $limite){
 
       if ($item != null) {
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC LIMIT $limite");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -74,7 +74,7 @@
 
       } else {
 
-          $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+          $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla LIMIT $limite");
 
           $stmt -> execute();
 

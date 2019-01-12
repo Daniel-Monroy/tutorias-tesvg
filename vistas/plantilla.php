@@ -134,7 +134,7 @@ if(!$_SESSION) {
 
       include "modulos/descripcion-actividad.php";
 
-    } else if ($rutas[0] == "salir" || $rutas[0] == "perfil" || $rutas[0] == "actividad"){
+    } else if ($rutas[0] == "salir" || $rutas[0] == "perfil" || $rutas[0] == "actividad" || $rutas[0] == "actividades"){
 
       include "modulos/".$rutas[0].".php";
 

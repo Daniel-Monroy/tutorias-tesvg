@@ -59,8 +59,10 @@ ACTIVIDADES REALIZADAS  =
 
 			$valor = $_SESSION["id"];
 
+			$limite = "3";
+
 			#Todas las Actividades
-			$actividadesRealizadas = ControladorActividades::ctrActividadesRealizadasPorAlumno($item, $valor);
+			$actividadesRealizadas = ControladorActividades::ctrActividadesRealizadasPorAlumno($item, $valor, $limite);
 			
 			foreach ($actividadesRealizadas as $key => $value) {
 				
@@ -104,11 +106,17 @@ ACTIVIDADES REALIZADAS  =
 			?>
 
 		</div>
+		
+		<a href="actividades">
+			<button class="btn btn-default pull-right btn-lg backColor"><i class="fa fa-eye"></i> Ver todas las actividades <i class="fa fa-arrow-right" aria-hidden="true"></i>
+			</button>
+		</a>
 
 	</div>
 
 </section>
 
+<br>
 
 <section id="actividades" class="resumen-actividades">
 	

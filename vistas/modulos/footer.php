@@ -5,7 +5,7 @@ $estiloPlantilla = ControladorPlantilla::ctrEstiloPlantilla();
 
 ?>
 
-<footer class="footer-nav" style="background:<?php echo $estiloPlantilla['barraSuperior'];?>; color:<?php echo $estiloPlantilla['colorTexto'];?> ">
+<footer class="footer-nav hidden" style="background:<?php echo $estiloPlantilla['barraSuperior'];?>; color:<?php echo $estiloPlantilla['colorTexto'];?> ">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
