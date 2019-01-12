@@ -228,9 +228,14 @@
               </div>
             </div>
             <div class="row">
+         
             <?php
 
-            $tutores = ControladorUsuarios::ctrMostrarTutores();
+            $item = "perfil";
+
+            $valor = "3";
+
+            $tutores = ControladorUsuarios::ctrMostrarTutores($item, $valor);
 
             foreach ($tutores as $key => $value) {
 
