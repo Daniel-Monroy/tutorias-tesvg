@@ -101,9 +101,11 @@ class ModeloUsuarios {
     # ==============================
     # = MOSTRAR TUTORES
     # ==============================
-    static public function mdlMostrarTutores($tabla){
+    static public function mdlMostrarTutores($tabla, $item, $valor){
 
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY rand() LIMIT 3");
+      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY rand() LIMIT 3");
+
+      $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
       $stmt -> execute();
 

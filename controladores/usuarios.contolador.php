@@ -296,6 +296,7 @@ class ControladorUsuarios
                     $_SESSION["id"] = $respuesta["id"];
                     $_SESSION["nombre"] = $respuesta["nombre"];
                     $_SESSION["apellidos"] = $respuesta["apellidos"];
+                    $_SESSION["id_tutor"] = $respuesta["id_tutor"];
                     $_SESSION["numeroControl"] = $respuesta["numeroControl"];
                     $_SESSION["id_carrera"] = $respuesta["id_carrera"];
                     $_SESSION["id_grupo"] = $respuesta["id_grupo"];
@@ -554,11 +555,11 @@ class ControladorUsuarios
     # ======================
     # = MOSTRAR TUTORES
     # ======================
-    static public function ctrMostrarTutores(){
+    static public function ctrMostrarTutores($item, $valor){
 
-      $tabla = "tutores";
+      $tabla = "usuarios";
 
-      $respuesta = ModeloUsuarios::mdlMostrarTutores($tabla);
+      $respuesta = ModeloUsuarios::mdlMostrarTutores($tabla, $item, $valor);
 
       return $respuesta;
 

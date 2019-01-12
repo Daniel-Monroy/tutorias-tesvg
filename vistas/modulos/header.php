@@ -233,9 +233,9 @@ HEADER
 
 					$valor1 = $value["id"];
 
-					$item2 = "id_grupo";
+					$item2 = "id_tutor";
 
-					$valor2 = $_SESSION["id_grupo"];
+					$valor2 = $_SESSION["id_tutor"];
 
 					$subActividades = ControladorActividades::ctrMostrarSubActividadesbyGrupo($item1, $valor1, $item2, $valor2);
 
