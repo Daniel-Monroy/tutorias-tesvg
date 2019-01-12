@@ -76,7 +76,7 @@ ACTIVIDADES REALIZADAS  =
 
 					<div class="col-md-4 col-sm-6 portfolio-item">
 					
-						<a class="portfolio-link">
+						<a class="portfolio-link" href="actividad">
 					
 							<img class="img-responsive" widht="50" src="'.$servidor.$value1["imagen"].'" alt="">
 					
@@ -92,7 +92,7 @@ ACTIVIDADES REALIZADAS  =
 
 							$actividad = ControladorActividades::ctrMostrarActividades($itemActividad, $valorActividad);
 					
-							echo' <p class="text-muted">'.$actividad["categoria"].'</p>
+							echo' <a href="actividad"> <p class="text-muted">'.$actividad["categoria"].'</p> </a>
 					
 						</div>
 					
