@@ -25,7 +25,7 @@ TOP
 			SOCIAL
 			======================================-->
 
-			<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 social">
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 social">
 
 				<ul>
 
@@ -61,7 +61,7 @@ TOP
 			REGISTRO
 			======================================-->
 
-			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 registro">
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 registro">
 
 				<ul>
 
@@ -92,7 +92,11 @@ TOP
 
 						}
 						?>
-					<li><a style="color: <?php echo $estiloPlantilla['textoSuperior']; ?>" href="<?php echo $url ?>perfil" data-toggle="modal">Ver Perfil</a></li>
+					<li class=""><a><?php echo $_SESSION["nombre"]." ".$_SESSION["apellidos"]?></a></li>
+
+					<li>|</li>
+
+					<li><a style="color: <?php echo $estiloPlantilla['textoSuperior']; ?>" href="<?php echo $url ?>perfil" data-toggle="modal">Perfil</a></li>
 
 					<li>|</li>
 

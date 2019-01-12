@@ -31,9 +31,6 @@ $servidor = Ruta::ctrRutaServidor();
   </div>
 
 </div>
-
-
-
 <!--=====================
 ACTIVIDADES REALIZADAS  =
 ======================-->
