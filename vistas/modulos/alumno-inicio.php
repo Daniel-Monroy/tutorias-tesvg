@@ -30,8 +30,6 @@ $servidor = Ruta::ctrRutaServidor();
 
 </div>
 
-
-
 <!--=====================
 ACTIVIDADES REALIZADAS  =
 ======================-->
@@ -53,16 +51,25 @@ ACTIVIDADES REALIZADAS  =
 
 		<div class="row">
 
-			<?php
+			<?php 
 
-			$item = "id_alumno";
+			# ========================
+		    # = ACTIVIDADES REALIZADAS
+		    # ========================
+		    $item = "id_alumno";
 
-			$valor = $_SESSION["id"];
+		    $valor = $_SESSION["id"];
 
-			$limite = "3";
+		    $ordenar = "id";
 
-			#Todas las Actividades
-			$actividadesRealizadas = ControladorActividades::ctrActividadesRealizadasPorAlumno($item, $valor, $limite);
+		    $modo = "DESC";
+
+		    $base = 0;
+
+		    $tope = 3;
+
+		    //ENVIANDO SOLO POR ALUMNO Y CATEGORIA
+		    $actividadesRealizadas = ControladorActividades::ctrMostrarSubActividadesRealizadas($item, $valor, $ordenar, $modo, $base, $tope);
 			
 			foreach ($actividadesRealizadas as $key => $value) {
 				
@@ -70,7 +77,7 @@ ACTIVIDADES REALIZADAS  =
 
 				$valorSubActiviad = $value["id_actividad"];
 
-				$subActividad = ControladorActividades::ctrMostrarTodasSubActividades($itemSubActividad, $valorSubActiviad);
+				$subActividad = ControladorActividades::ctrMostrarSubActividades($itemSubActividad, $valorSubActiviad);
 				
 				foreach ($subActividad as $key => $value1) {
 					

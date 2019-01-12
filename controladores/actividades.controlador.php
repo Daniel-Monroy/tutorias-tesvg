@@ -2,42 +2,6 @@
 class ControladorActividades
 {
 
-  # ================================
-  # =MOSTRAR UNA ACTIVIDAD REALIZADA 
-  # ================================
-  static public function ctrActividadRealizadaPorAlumno($item1, $valor1, $item2, $valor2){
-
-    $tabla = "actividades_alumnos";
-
-    $respuesta = ModeloActividades::mdlActividadRealizadaPorAlumno($tabla, $item1, $valor1, $item2, $valor2);
-
-    return $respuesta;
-  }
-
-  # =====================================
-  # =MOSTRAR TODAS ACTIVIDADES REALIZADAS
-  # =====================================
-  static public function ctrActividadesRealizadasPorAlumno($item, $valor, $limite){
-
-    $tabla = "actividades_alumnos";
-
-    $respuesta = ModeloActividades::mdlActividadesRealizadasPorAlumno($tabla, $item, $valor, $limite);
-
-    return $respuesta;
-  }
-
-  # ==============================================
-  # =MOSTRAR SUB-ACTIVIDADES POR GRUPO Y CATEGORIA
-  # ==============================================
-  static public function ctrMostrarSubActividadesbyGrupo($item1, $valor1, $item2, $valor2){
-
-    $tabla = "sub_actividades";
-
-    $respuesta = ModeloActividades::mdlMostrarSubActividadesbyGrupo($tabla, $item1, $valor1, $item2, $valor2);
-
-    return $respuesta;
-
-  }
 
   # =====================================
   # =MOSTRAR ACTIVIDADES           =
@@ -52,9 +16,22 @@ class ControladorActividades
 
   }
 
+  # ===================================
+  # =MOSTRAR INFO SUB-ACTIVIDADES
+  # ===================================
+  static public function ctrMostrarInfoSubActividades($item, $valor){
+
+    $tabla = "sub_actividades";
+
+    $respuesta = ModeloActividades::mdlMostrarInfoSubActividades($tabla, $item, $valor);
+
+    return $respuesta;
+
+  }
+
 
   # ===================================
-  # =MOSTRAR 1 SUB-ACTIVIDAD
+  # =MOSTRAR SUB-ACTIVIDADES
   # ===================================
   static public function ctrMostrarSubActividades($item, $valor){
 
@@ -66,22 +43,46 @@ class ControladorActividades
 
   }
 
+
   # ===================================
-  # =MOSTRAR TODAS LAS SUB-ACTIVIDADES
+  # =MOSTRAR SUB-ACTIVIDADES 2 PARAMETROS
   # ===================================
-  static public function ctrMostrarTodasSubActividades($item, $valor){
+  static public function ctrMostrarSubActividadesby2params($item1, $valor1, $item2, $valor2){
 
     $tabla = "sub_actividades";
 
-    $respuesta = ModeloActividades::mdlMostrarTodasSubActividades($tabla, $item, $valor);
+    $respuesta = ModeloActividades::mdlMostrarSubActividadesby2params($tabla, $item1, $valor1, $item2, $valor2);
+
+    return $respuesta;
+
+  }
+
+  # ===================================
+  # =MOSTRAR SUB-ACTIVIDADES REALIZADAS CON DOS PARAMETROS
+  # ===================================
+  static public function ctrMostrarSubActividadesRealizadasby2params($item1, $valor1, $item2, $valor2){
+
+    $tabla = "actividades_alumnos";
+
+    $respuesta = ModeloActividades::mdlMostrarSubActividadesRealizadasby2params($tabla, $item1, $valor1, $item2, $valor2);
 
     return $respuesta;
 
   }
 
 
+  # ===================================
+  # =MOSTRAR SUB-ACTIVIDADES REALIZADAS 
+  # ===================================
+  static public function ctrMostrarSubActividadesRealizadas($item, $valor, $ordenar, $modo, $base, $tope){
 
+    $tabla = "actividades_alumnos";
 
+    $respuesta = ModeloActividades::mdlMostrarSubActividadesRealizadas($tabla, $item, $valor, $ordenar, $modo, $base, $tope);
+
+    return $respuesta;
+
+  }
 
   # ===================================
   # =CARGAR ACTIVIDAD
@@ -150,6 +151,26 @@ class ControladorActividades
     }
 
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   # =================

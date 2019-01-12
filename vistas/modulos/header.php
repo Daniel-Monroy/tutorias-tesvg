@@ -204,7 +204,7 @@ HEADER
 
 			$value = null;
 
-			$actividades = ControladorActividades::ctrMostrarActividades($item, $value);
+			$actividades = ControladorActividades::ctrMostrarActividades($item, $value);	
 			
 		?>
 
@@ -237,8 +237,8 @@ HEADER
 
 					$valor2 = $_SESSION["id_tutor"];
 
-					$subActividades = ControladorActividades::ctrMostrarSubActividadesbyGrupo($item1, $valor1, $item2, $valor2);
-
+					$subActividades = ControladorActividades::ctrMostrarSubActividadesby2params($item1, $valor1, $item2, $valor2);
+					
 					foreach ($subActividades as $key => $value1) {
 						
 						echo '  

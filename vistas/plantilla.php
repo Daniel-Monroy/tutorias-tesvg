@@ -119,7 +119,7 @@ if(!$_SESSION) {
     ===============================================>>>>>*/
     $actividadesCategoria = ControladorActividades::ctrMostrarActividades($item, $value);
 
-    $subActividades = ControladorActividades::ctrMostrarSubActividades($item, $value); 
+    $subActividades = ControladorActividades::ctrMostrarInfoSubActividades($item, $value); 
 
     if ($rutas[0] == $actividadesCategoria["ruta"] || $rutas[0] == $subActividades["ruta"] ) {
 
@@ -128,7 +128,7 @@ if(!$_SESSION) {
     }
 
     /*=============================================>>>>>
-    = URL AMIGABLE DE ACTIVIDADES - SUBCATEGIRIAS =
+    = URL AMIGABLE DE ACTIVIDADES - SUBCATEGORIAS =
     ===============================================>>>>>*/
     if ($ruta != null || $rutas[0] == $actividadesCategoria["ruta"]  || $rutas == $subActividades["ruta"]) {
 

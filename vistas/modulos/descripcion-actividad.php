@@ -10,7 +10,7 @@
 
       <ul class="breadcrumb lead fondoBreadcrumb text-uppercase">
 
-           <li class="active pagActiva">
+           <li>
              <a href="<?php echo $url;?>">INICIO</a>
            </li>
            <li class="active pagActiva"> <?php echo $rutas[0];?></li>
@@ -47,12 +47,22 @@
 
     $item2 = "id_actividad";
 
-    $valor2 = $subActividades["id"];
+    $valor2 = $subActividades[0]["id"];
 
-    $actividadesRealizadas = ControladorActividades::ctrActividadRealizadaPorAlumno($item1, $valor1, $item2, $valor2);
-   ?>
+    $ordenar = "id";
 
-  <h3><?php echo $subActividades["nombre"]; ?></h3>
+    $modo = "DESC";
+
+    $base = 0;
+
+    $tope = 1;
+
+    //ENVIANDO SOLO POR ALUMNO Y CATEGORIA
+    $actividadesRealizadas = ControladorActividades::ctrMostrarSubActividadesRealizadasby2params($item1, $valor1, $item2, $valor2);
+  
+  ?>
+
+  <h3><?php echo $subActividades[0]["nombre"]; ?></h3>
   
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#objetivo">Objetivo</a></li>
@@ -75,7 +85,7 @@
 
         <blockquote class="text-justify">
 
-         <?php echo $subActividades["objetivo"];?>
+         <?php echo $subActividades[0]["objetivo"];?>
         
         </blockquote>
    
@@ -89,17 +99,17 @@
         
         <div class="col-xs-12 col-sm-4">
           
-          <img src="<?php echo $servidor.$subActividades["imagen"];?>" class="img-thumbnail" width="100%" alt="">
+          <img src="<?php echo $servidor.$subActividades[0]["imagen"];?>" class="img-thumbnail" width="100%" alt="">
 
         </div>
 
          <div class="col-xs-12 col-sm-8" style="margin-top: 0px">
 
-            <h1><?php echo $subActividades["nombre"] ?></h1>
+            <h1><?php echo $subActividades[0]["nombre"] ?></h1>
             
             <blockquote class="text-justify">
 
-              <?php echo $subActividades["textoAyuda"]?>
+              <?php echo $subActividades[0]["textoAyuda"]?>
         
             </blockquote>
 
@@ -119,7 +129,7 @@
     
       <blockquote class="text-justify">
   
-       <?php echo $subActividades["actividades"]; ?>
+       <?php echo $subActividades[0]["actividades"]; ?>
 
       </blockquote>
     
@@ -141,13 +151,13 @@
               <div class="panel text-uppercase">Descargar Archivo</div>
 
               
-               <a target="_blanck" href="<?php echo $servidor.$subActividades["ruta_archivo"];?>">
+               <a target="_blanck" href="<?php echo $servidor.$subActividades[0]["ruta_archivo"];?>">
                 
                 <button class="btn btn-default backColor">Descargar</button>
 
               </a>
               
-              <p class="help-block"><?php echo $subActividades["nombre"];?></p>
+              <p class="help-block"><?php echo $subActividades[0]["nombre"];?></p>
   
             </div>
 
@@ -171,7 +181,7 @@
 
                 <input type="hidden" name="nombreArchivo"  value="<?php echo $rutas[0]?>">
 
-                <input type="hidden" name="idActividad" value="<?php echo $subActividades["id"]?>">
+                <input type="hidden" name="idActividad" value="<?php echo $subActividades[0]["id"]?>">
 
                 <button type="submit" id="btnCargarActividad" class="btn btn-default backColor hidden"> Cargar </button>
 

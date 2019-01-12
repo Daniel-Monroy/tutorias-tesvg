@@ -37,60 +37,10 @@
     }
 
 
-    # ==================================
-    # = MOSTRAR UNA ACTIVIDAD REALIZADA =
-    # ==================================
-    static public function mdlActividadRealizadaPorAlumno($tabla, $item1, $valor1, $item2, $valor2){
-
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 AND $item2 = :$item2");
-
-        $stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
-
-        $stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
-
-        $stmt -> execute();
-
-        return $stmt -> fetch();
-        
-        $stmt -> close();
-
-        $stmt = null;
-    }
-
-    # ======================================
-    # = MOSTRAR TODAS ACTIVIDADES REALIZADAS
-    # ======================================
-    static public function mdlActividadesRealizadasPorAlumno($tabla, $item, $valor, $limite){
-
-      if ($item != null) {
-
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC LIMIT $limite");
-
-        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-        $stmt -> execute();
-
-        return $stmt -> fetchAll();
-
-      } else {
-
-          $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla LIMIT $limite");
-
-          $stmt -> execute();
-
-          return $stmt -> fetchAll();
-
-        }
-
-         $stmt -> close();
-
-         $stmt = null;
-    }
-
-    # ===================================
-    # =MOSTRAR SUB-ACTIVIDADES ALUMNO   =
-    # ===================================
-    static public function mdlMostrarSubActividades($tabla, $item, $valor){
+    # ===========================
+    # =MOSTRAR INFO SUB-ACTIVIDADES  =
+    # ===========================
+    static public function mdlMostrarInfoSubActividades($tabla, $item, $valor){
 
       if ($item != null) {
               
@@ -118,10 +68,11 @@
 
     }
 
-    # ===================================
-    # =MOSTRAR SUB-ACTIVIDADES REALIZADAS=
-    # ===================================
-    static public function mdlMostrarTodasSubActividades($tabla, $item, $valor){
+
+    # ===========================
+    # =MOSTRAR SUB-ACTIVIDADES  =
+    # ===========================
+    static public function mdlMostrarSubActividades($tabla, $item, $valor){
 
       if ($item != null) {
               
@@ -150,14 +101,14 @@
     }
 
 
-    # ===================================
-    # =MOSTRAR SUB-ACTIVIDADES POR GRUPO=
-    # ===================================
-    static public function mdlMostrarSubActividadesbyGrupo($tabla, $item1, $valor1, $item2, $valor2){
+    # ===========================
+    # =MOSTRAR SUB-ACTIVIDADES BY PARAMETROS =
+    # ===========================
+    static public function mdlMostrarSubActividadesby2params($tabla, $item1, $valor1, $item2, $valor2){
 
       if ($item1 != null) {
               
-          $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 AND $item2 = :$item2");
+          $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 AND $item2 =:$item2");
 
           $stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
 
@@ -182,7 +133,87 @@
         $stmt = null;
 
     }
-      
+
+
+    # ==================================
+    # =MOSTRAR MOSTRAR ACTIVIDADES REALIZADAS CON PARAMETROS
+    # ==================================
+    static public function mdlMostrarSubActividadesRealizadasby2params($tabla, $item1, $valor1, $item2, $valor2){
+
+       if ($item1 != null) {
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item1 = :$item1 AND $item2 =:$item2");
+
+        $stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
+
+        $stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+      } else {
+
+          $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
+
+          $stmt -> execute();
+
+          return $stmt -> fetchAll();
+
+        }
+
+         $stmt -> close();
+
+         $stmt = null;
+
+    }
+
+
+    # ==================================
+    # =MOSTRAR MOSTRAR SUB-ACTIVIDADES 
+    # ==================================
+    static public function mdlMostrarSubActividadesRealizadas($tabla, $item, $valor, $ordenar, $modo, $base, $tope){
+
+       if ($item != null) {
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY $ordenar $modo LIMIT $base, $tope");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+      } else {
+
+          $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
+
+          $stmt -> execute();
+
+          return $stmt -> fetchAll();
+
+        }
+
+         $stmt -> close();
+
+         $stmt = null;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # ===================================
     # = MOSTRAR PORTAFOLIO ACTIVIDADES  =

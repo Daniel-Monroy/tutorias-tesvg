@@ -24,13 +24,6 @@
 
 <div class="container actividades" style="margin-bottom: 100px;">
 
-  <?php 
-
-    $item = "ruta";
-
-    $valor = $rutas[0];
-
-  ?>
   
   <ul class="nav nav-tabs">
   
