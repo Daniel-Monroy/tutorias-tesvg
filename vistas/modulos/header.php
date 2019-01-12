@@ -239,7 +239,7 @@ HEADER
 						
 						echo '  
 						
-							<li><a href="'.$value1["ruta"].'" class="pixelSubCategoria">'.$value1["nombre"].'</a></li>
+							<li style="margin-bottom:5px" class="text-uppercase"><a href="'.$value1["ruta"].'" class="pixelSubCategoria">'.$value1["nombre"].'</a></li>
 
 						';
 
