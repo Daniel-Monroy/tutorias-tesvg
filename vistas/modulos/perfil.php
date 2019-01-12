@@ -106,7 +106,7 @@
                     
                     <span class="input-group-addon"> <i class="fa fa-user"></i> </span>
                        
-                    <input type="text" name="editarNombre" placeholder="Nombre" required class="form-control input-lg" value="<?php echo $_SESSION["nombre"] ?>">   
+                    <input type="text" readonly name="editarNombre" placeholder="Nombre" required class="form-control input-lg" value="<?php echo $_SESSION["nombre"] ?>">   
 
                   </div>
         
@@ -119,7 +119,7 @@
                     
                     <span class="input-group-addon"> <i class="fa fa-user"></i></span>
                        
-                    <input type="text" name="editarApellidos" placeholder="Apellidos" required class="form-control 
+                    <input type="text" readonly name="editarApellidos" placeholder="Apellidos" required class="form-control 
                     input-lg" value="<?php echo $_SESSION["apellidos"] ?>">   
                  
                   </div>
@@ -138,6 +138,33 @@
 
                 </div>  
                   
+                
+                <?php 
+
+                  $item = "id";
+
+                  $valor = $_SESSION["id_tutor"];
+
+                  $tutor = ControladorTutores::ctrMostrarTutores($item, $valor);
+                  
+                 ?>
+
+                 <!-- Entrada para el Tutor-->
+                <div class="form-group">
+                    
+                  <div class="input-group">
+                    
+                    <span class="input-group-addon"><i class="fa fa-male" aria-hidden="true"></i></span>
+                       
+                    <input type="text" readonly placeholder="Tutor" required class="form-control input-lg" value="<?php echo $tutor[0]["nombre"]." ".$tutor[0]["apellidos"]?>">   
+
+                    <input type="hidden" name="editarTutor" value="<?php echo $tutor[0]["id"]?>">
+                  
+                  </div>
+
+                </div> 
+
+
 
                 <?php 
 
@@ -196,7 +223,7 @@
                     
                     <span class="input-group-addon"> <i class="fa fa-envelope"></i></span>
                        
-                    <input type="text" name="editarEmail" value="<?php echo $_SESSION["email"]?>" placeholder="Correo Electrónico" required class="form-control input-lg">   
+                    <input type="text" readonly name="editarEmail" value="<?php echo $_SESSION["email"]?>" placeholder="Correo Electrónico" required class="form-control input-lg">   
                   </div>
                   
                 </div> 

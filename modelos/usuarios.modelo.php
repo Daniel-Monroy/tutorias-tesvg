@@ -55,13 +55,15 @@ class ModeloUsuarios {
     # ==============================
     static public function mdlActualizarDatosUsuario($tabla, $datos, $item, $valor){
 
-      $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre , apellidos = :apellidos, numeroControl = :numeroControl, id_carrera = :id_carrera, id_grupo = :id_grupo, email = :email,  password = :password, foto = :foto, verificacion = :verficacion, modo = :modo, emailEncriptado = :emailEncriptado WHERE $item = :$item");
+      $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre , apellidos = :apellidos, numeroControl = :numeroControl, id_tutor = :id_tutor, id_carrera = :id_carrera, id_grupo = :id_grupo, email = :email,  password = :password, foto = :foto, verificacion = :verficacion, modo = :modo, emailEncriptado = :emailEncriptado WHERE $item = :$item");
 
       $stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
       
       $stmt -> bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
       
       $stmt -> bindParam(":numeroControl", $datos["numeroControl"], PDO::PARAM_STR);
+
+       $stmt -> bindParam(":id_tutor", $datos["id_tutor"], PDO::PARAM_STR);
       
       $stmt -> bindParam(":id_carrera", $datos["id_carrera"], PDO::PARAM_STR);
       

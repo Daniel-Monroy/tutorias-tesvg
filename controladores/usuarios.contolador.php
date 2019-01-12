@@ -6,7 +6,7 @@
 class ControladorUsuarios
 {
     # =====================
-    # = MOSTRAR USUARIO   =
+    # = MOSTRAR ALUMNO   =
     # =====================
     static public function ctrMostrarUsuario($item, $valor){
 
@@ -20,7 +20,7 @@ class ControladorUsuarios
 
 
     # =====================
-    # = EDITAR USUARIO  =
+    # = EDITAR ALUMNO  =
     # =====================
     public function ctrEditarAlumno(){
 
@@ -152,6 +152,7 @@ class ControladorUsuarios
                    'nombre' => $_POST["editarNombre"], 
                    'apellidos' => $_POST["editarApellidos"], 
                    'numeroControl' => $_POST["numeroControl"], 
+                   'id_tutor' => $_POST["editarTutor"], 
                    'id_carrera' => $_POST["editarCarrera"], 
                    'id_grupo' => $_POST["editarGrupo"],  
                    'email' => $_POST["editarEmail"], 
@@ -170,6 +171,7 @@ class ControladorUsuarios
               $_SESSION["id"] = $datos["id"];
               $_SESSION["nombre"] = $datos["nombre"];
               $_SESSION["apellidos"] = $datos["apellidos"];
+              $_SESSION["id_tutor"] = $datos["id_tutor"];
               $_SESSION["numeroControl"] = $datos["numeroControl"];
               $_SESSION["id_carrera"] = $datos["id_carrera"];
               $_SESSION["id_grupo"] = $datos["id_grupo"];
