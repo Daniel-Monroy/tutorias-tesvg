@@ -106,22 +106,38 @@ class ControladorActividades
           $respuesta = ModeloActividades::mdlActividadesCreadas($tabla, $datos);
 
           if ($respuesta == "ok") {
+
+              #COMENTARIO SOBRE LAS ACTIVIDADES
+              $tabla1 = "comentarios_actividad";
+
+              $datos1 = array(
+                'id_alumno' => $_POST["idAlumno"], 
+                'id_tutor' => $_SESSION["id_tutor"], 
+                'id_subactividad' => $_POST["idActividad"],
+                'estadoActividad' => 0,
+                'mensaje' => "",
+                'estadoAlumno' => 0
+              );
+
+              $comentarioActividad = ModeloActividades::mdlComentarioActividad($tabla1, $datos1);
           
-           echo ' 
-             <script>
-                 swal({
-                    title: "¡Bien echo!",
-                    text: "¡Tu actividad ha sido almacenada con éxito, en breve notificaremos a tu Tutor!",
-                    type: "success",
-                    confirmButtonText: "Cerrar",
-                    closeOnConfirm: false
-                },function(isConfirm){
-                     if (isConfirm) {
-                        window.location = "'.$_POST["ruta"].'";
-                      }
-                });
-              </script>
-           ';
+              if ($comentarioActividad == "ok") {
+                   echo ' 
+                   <script>
+                       swal({
+                          title: "¡Bien echo!",
+                          text: "¡Tu actividad ha sido almacenada con éxito, en breve notificaremos a tu Tutor!",
+                          type: "success",
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                      },function(isConfirm){
+                           if (isConfirm) {
+                              window.location = "'.$_POST["ruta"].'";
+                            }
+                      });
+                    </script>
+                 ';
+              }
           
           }
       

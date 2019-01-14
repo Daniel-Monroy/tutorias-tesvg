@@ -296,5 +296,40 @@
       $stmt = null;
 
     }
+
+    # ====================================
+    # = COMENTARIO PARA LAS ACTIVIDADES 
+    # ====================================
+    static public function mdlComentarioActividad($tabla, $datos){
+
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_subactividad, id_tutor, id_alumno, estadoActividad, mensaje, estadoAlumno) VALUES (:id_subactividad, :id_tutor, :id_alumno, :estadoActividad, :mensaje, :estadoAlumno)");
+
+      $stmt -> bindParam(":id_subactividad", $datos["id_subactividad"], PDO::PARAM_INT);
+
+      $stmt -> bindParam(":id_tutor", $datos["id_tutor"], PDO::PARAM_INT);
+
+      $stmt -> bindParam(":id_alumno", $datos["id_alumno"], PDO::PARAM_INT);
+
+      $stmt -> bindParam(":estadoActividad", $datos["estadoActividad"], PDO::PARAM_INT);
+
+      $stmt -> bindParam(":mensaje", $datos["mensaje"], PDO::PARAM_STR);
+
+      $stmt -> bindParam(":estadoAlumno", $datos["estadoAlumno"], PDO::PARAM_INT);
+
+      if($stmt -> execute()){
+
+        return "ok";
+
+      } else {
+
+        return "error";
+
+      }
+
+      $stmt -> close();
+
+      $stmt = null;
+
+    }
   
 }
