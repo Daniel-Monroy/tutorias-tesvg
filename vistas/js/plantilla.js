@@ -21,3 +21,26 @@ $.ajax({
 		$(".barraSuperior, .barraSuperior a").css({"background": barraSuperior, "color": textoSuperior});
 	}
 });
+
+/*====================
+PAGINACIÓN
+====================*/
+var url=window.location.href;
+
+var indice=url.split("/");
+
+var pagActual=indice[5];
+
+if(pagActual!="#"){
+
+	if(isNaN(pagActual)){
+
+		$("#item1").addClass("active");}
+
+	else{
+
+		$("#item"+pagActual).addClass("active");
+
+		$("#item"+pagActual+"a").removeAttr("href");}
+
+}
