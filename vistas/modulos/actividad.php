@@ -4,8 +4,35 @@ $url = Ruta::ctrRuta();
 
 $servidor = Ruta::ctrRutaServidor();
 
-?>
+# ========================
+# = ACTIVIDADES REALIZADAS
+# ========================
+$item = "id";
 
+$valor = $rutas[1];
+
+$ordenar = "id";
+
+$modo = "DESC";
+
+$base = 0;
+
+$tope = 1;
+
+//ENVIANDO SOLO POR ALUMNO Y CATEGORIA
+$actividadesRealizadas = ControladorActividades::ctrMostrarSubActividadesRealizadas($item, $valor, $ordenar, $modo, $base, $tope);
+
+# ========================
+# = ACTIVIDAD REALIZADA  =
+# ========================
+$item = "id";
+
+$valor = $actividadesRealizadas[0]["id_actividad"];
+
+$subActividad = ControladorActividades::ctrMostrarSubActividades($item, $valor);
+
+
+?>
 
 <!--=====================
 = BREADCRUMB            =
@@ -48,7 +75,7 @@ $servidor = Ruta::ctrRutaServidor();
 				
 				<figure class="visor">
 					
-					<img class="img-thumbnail" src="<?php echo $servidor?>vistas/actividades/imagenes/foda-fortalezas/foda-fortalezas.jpg" alt="">
+					<img class="img-thumbnail" src="<?php echo $servidor.$subActividad[0]["imagen"]; ?>" alt="">
 
 				</figure>
 
@@ -75,31 +102,41 @@ $servidor = Ruta::ctrRutaServidor();
 
 					<div class="clearfix"></div>	
 
-					<h1 class="text-muted text-uppercase">La linea de la vida</h1>
-					
-					<h4 class="text-muted"><small>linea de la vida</small></h4>	
-	
-					<br>
+					<?php 
 
-					<blockquote>
-	
-					<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae velit ducimus, consequatur id animi facilis dolor doloremque corrupti impedit odio cum, sed quam deserunt ipsam quia consequuntur perspiciatis repudiandae voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, sapiente neque provident. Ex, quos ut aliquid explicabo, cupiditate numquam, iure voluptatem consectetur atque, quae perferendis nulla iste distinctio dolorum voluptas.</p>
+						echo '  
 
-					</blockquote>
-
-					<h4> 
+						<h1 class="text-muted text-uppercase">'.$subActividad[0]["nombre"].'</h1>
 						
-						<p class="text-muted">Entregado el día</p>
+						<h4 class="text-muted"><small>linea de la vida</small></h4>	
+
+						<br>
+							
+						<blockquote>
+	
+							<p class="text-justify">'.$subActividad[0]["objetivo"].'</p>
+
+						</blockquote>	
+
+
+						<h4> 
 						
-						<span class="label label-default" style="font-weight:100">
+							<p class="text-muted">Entregado el día</p>
+							
+							<span class="label label-default" style="font-weight:100">
 
-							<i class="fa fa-clock-o" style="margin-right:5px;"></i>
-							10-12-2018 10:00:00
+								<i class="fa fa-clock-o" style="margin-right:5px;"></i>
+								'.$actividadesRealizadas[0]["fecha"].'
 
-						</span>
+							</span>
 
-					 </h4>
-				
+						 </h4>
+
+						';
+
+
+					 ?>
+
 				</div>
 
 				<hr>
@@ -115,12 +152,27 @@ $servidor = Ruta::ctrRutaServidor();
 			<ul class="nav nav-tabs">
 				
 				<li class="active">
-					
-					<!-- <a href="" class="text-muted">Revisión</a> -->
+
+					<?php 
+
+						$item = "id_subactividad";
+
+						$valor = $subActividad[0]["id"];
+
+						$revision = ControladorActividades::ctrMostrarRevisionActividad($item, $valor);
+						
+						if ($revision["estadoActividad"] == 0) {
+							
+								echo '<a href="" class="text-muted">Sin Revisión</a>';
+
+						} else {
+
+							echo '<a href="" class="text-muted">Revisada</a>';
+
+						}
 
 
-					<a href="" class="text-muted">Sin Revisión</a>
-
+					 ?>
 
 				</li>
 
@@ -131,62 +183,85 @@ $servidor = Ruta::ctrRutaServidor();
 		<br>
 
 		<div class="row">
-			
-			<div class="col-xs-12 hidden">
+
+
+			<?php 
+
+			if ($revision["estadoActividad"] == 0) {
+
+
+				echo ' 
+
+				<div class="col-xs-12">
 				
-				<h3 style="margin-top: -10px"> <i class="fa fa-thumbs-down"></i>Tu tutor aún no ha revisado tu actividad</h3>
+					<h3 style="margin-top: -10px"> <i class="fa fa-thumbs-down"></i>Tu tutor aún no ha revisado tu actividad</h3>
+		
+					<br>
 
-				<br>
+				</div>	
 
-			</div>	
+				';
 
-			<div class="col-md-2 col-sm-3 col-xs-12">
+
+			} else {
+
+
+			 echo '  
+
+				<div class="col-md-2 col-sm-3 col-xs-12">';
+
+					$item = "id";
+
+					$valor = $subActividad[0]["id_tutor"];
+
+					$tutor = ControladorTutores::ctrMostrarTutores($item, $valor);
 					
-				<figure style="padding-bottom: 10px">
+
+					echo'
+					<figure style="padding-bottom: 10px">
+						
+						<img class="img-rounded" width="80%" src="'.$servidor.$tutor[0]["foto"].'">
+
+					</figure>	
+
+					<h5 class="text-muted"> <i class="fa fa-calendar-o" aria-hidden="true"></i> Revisada: <br> <br> '.$revision["fecha"].'</h5>
+
+				</div>
+
+				<div class="col-md-10 col-sm-9 col-xs-12">
+
+					 <h1 style="margin-top: -10px"><small> '.$tutor[0]["nombre"]." ".$tutor[0]["apellidos"].'</small> <button  class="btn btn-default backColor btn-sm pull-right"> <i class="fa fa-thumbs-up" aria-hidden="true" ></i> Enterado</button></h1> 
+
+
+					 <h4> <small> '.$tutor[0]["profesion"].' <small></h4>
+
+					 <h4> 
+						
+						<span class="label label-default hidden" style="font-weight:100">
+
+							<i class="fa fa-thumbs-up" style="margin-right:5px;"></i>
+							Bien echo
+
+						</span>
+
+					 </h4>
 					
-					<img class="img-rounded" width="80%" src="http://localhost/tutoriasBack/vistas/img/usuarios/admin/518.png">
-
-				</figure>	
-
-
-
-				<h5 class="text-muted"> <i class="fa fa-calendar-o" aria-hidden="true"></i> Revisada: <br> <br> 10-12-2019 13:00:12</h5>
-
-			</div>
-
-			<div class="col-md-10 col-sm-9 col-xs-12">
-
-				<h1 style="margin-top: -10px"><small> Daniel Monroy Domínguez</small></h1>
-
-				<h4> <small> Ingeneriero en Sistemas Computacionales <small></h4>
-
-				 <h4> 
-					
-					<span class="label label-default hidden" style="font-weight:100">
-
-						<i class="fa fa-thumbs-up" style="margin-right:5px;"></i>
-						Bien echo
-
-					</span>
-
-					<span class="label label-default" style="font-weight:100">
-
-						<i class="fa fa-thumbs-down" style="margin-right:5px;"></i>
-						No lo hiciste muy bien
-
-					</span>
-
-				 </h4>
+					<blockquote>
 				
-				<blockquote>
+						<p class="text-justify">
+						
+							'.$revision["mensaje"].'
+
+						</p>
+
+					</blockquote>
+
+				</div>
+
+			 ';
+
+			}?>
 			
-					<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed fugiat, fuga iste enim dignissimos qui ullam inventore adipisci reprehenderit vitae quasi ducimus itaque maiores perferendis quis quia possimus officia illum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam obcaecati, dolores asperiores rerum dolorum deserunt. Ullam fugit commodi nihil nobis. Labore tempora, odio eius? Culpa aperiam esse voluptate, at ad! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos modi sit corrupti asperiores, cumque id, enim recusandae reprehenderit unde totam necessitatibus qui expedita, ad. Vel nam optio quia eligendi, molestias?</p>
-
-				</blockquote>
-
-			</div>
-
 		</div>
 
 	</div>

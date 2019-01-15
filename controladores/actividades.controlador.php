@@ -85,6 +85,19 @@ class ControladorActividades
   }
 
   # ===================================
+  # =MOSTRAR REVISIÖN DE ACTIVIDAD 
+  # ===================================
+  static public function ctrMostrarRevisionActividad($item, $valor){
+
+    $tabla = "comentarios_actividad";
+
+    $respuesta = ModeloActividades::mdlMostrarRevisionActividad($tabla, $item, $valor);
+
+    return $respuesta;
+
+  }
+
+  # ===================================
   # =CARGAR ACTIVIDAD
   # ===================================
   static public function ctrCargarActividad(){

@@ -71,10 +71,9 @@
 </head>
 
 <body>
-
-<!--============================================>>>>>
-= INCLUIMOS LAS VISTAS DISPONIBLES =
-===============================================>>-->
+<!--==============================
+= INCLUIMOS LAS VISTAS DISPONIBLES
+===============================-->  
 <?php
 
 if(!$_SESSION) {
@@ -114,9 +113,9 @@ if(!$_SESSION) {
 
     $value =  $rutas[0];
 
-    /*=============================================>>>>>
-    = URL AMIGABLE DE ACTIVIDADES - CATEGORIAS =
-    ===============================================>>>>>*/
+    # =============================================
+    # = URL AMIGABLE DE ACTIVIDADES - CATEGORIAS =
+    # =============================================
     $actividadesCategoria = ControladorActividades::ctrMostrarActividades($item, $value);
 
     $subActividades = ControladorActividades::ctrMostrarInfoSubActividades($item, $value); 
@@ -127,9 +126,9 @@ if(!$_SESSION) {
 
     }
 
-    /*=============================================>>>>>
-    = URL AMIGABLE DE ACTIVIDADES - SUBCATEGORIAS =
-    ===============================================>>>>>*/
+    # =============================================
+    # = URL AMIGABLE DE ACTIVIDADES - SUBCATEGORIAS 
+    # =============================================
     if ($ruta != null || $rutas[0] == $actividadesCategoria["ruta"]  || $rutas == $subActividades["ruta"]) {
 
       include "modulos/descripcion-actividad.php";
@@ -159,10 +158,9 @@ include "modulos/footer.php";
 <input type="hidden" value="<?php echo $url;?>" id="rutaLocal">
 <input type="hidden" value="<?php echo $servidor;?>" id="rutaServidor">
 
-
-<!--=============================================>>>>>
-= JS PERSONALES =
-===============================================>>>>>-->
+<!--========================
+=  JS PERSONALES           =
+==========================-->
 <script src="<?php echo $url; ?>vistas/js/plugins/agency.js"></script>
 
 <script src="<?php echo $url;?>vistas/js/presentacion.js"></script>
