@@ -97,6 +97,20 @@ class ControladorActividades
 
   }
 
+
+  # ===============================
+  # = LISTAR ACTIVIDADES REALIZADAS
+  # ===============================
+  static public function ctrListarSubActividadesRealizadas($item, $valor, $ordenar){
+
+    $tabla = "actividades_alumnos";
+
+    $respuesta = ModeloActividades::mdlListarSubActividadesRealizadas($tabla, $item, $valor, $ordenar);
+
+    return $respuesta;
+
+  }
+
   # ===================================
   # =CARGAR ACTIVIDAD
   # ===================================

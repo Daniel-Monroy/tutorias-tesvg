@@ -234,6 +234,39 @@
     }
 
 
+    # =======================
+    # = LISTAR PRODUCTOS
+    # =======================
+    static public function mdlListarSubActividadesRealizadas($tabla, $item, $valor, $ordenar){
+    
+      if ($item != null) {
+      
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY $ordenar DESC");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+      
+      } else {
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $ordenar DESC");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+      } 
+
+
+      $stmt -> close();
+
+      $stmt = null;
+
+    } 
+
+
 
 
 
