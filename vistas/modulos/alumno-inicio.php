@@ -70,54 +70,68 @@ ACTIVIDADES REALIZADAS  =
 
 		    //ENVIANDO SOLO POR ALUMNO Y CATEGORIA
 		    $actividadesRealizadas = ControladorActividades::ctrMostrarSubActividadesRealizadas($item, $valor, $ordenar, $modo, $base, $tope);
-			
-			foreach ($actividadesRealizadas as $key => $value) {
+		    
+		   	
+		   	if (count($actividadesRealizadas) == 0) {
+		   		
+		   		echo '<h3 class="text-muted text-center"> No has realizado ninguna actividad </h3>';
+
+		   	} else {
+
+				foreach ($actividadesRealizadas as $key => $value) {
+					
+					$itemSubActividad = "id";
+
+					$valorSubActiviad = $value["id_actividad"];
+
+					$subActividad = ControladorActividades::ctrMostrarSubActividades($itemSubActividad, $valorSubActiviad);
+
+					foreach ($subActividad as $key => $value1) {
+						
+						echo '
+
+						<div class="col-md-4 col-sm-6 portfolio-item">
+						
+							<a class="portfolio-link" href="actividad/'.$value["id"].'">
+						
+								<img class="img-responsive" widht="50" src="'.$servidor.$value1["imagen"].'" alt="">
+						
+							</a>
+						
+							<div class="portfolio-caption">
+						
+								<h4>'.$value1["nombre"].'</h4>';
+
+								$itemActividad = "id";
+
+								$valorActividad = $value1["id_actividad"];
+
+								$actividad = ControladorActividades::ctrMostrarActividades($itemActividad, $valorActividad);
+						
+								echo' <a href="actividad/'.$value["id"].'"> <p class="text-muted">'.$actividad["categoria"].'</p> </a>
+						
+							</div>
+						
+						</div> ';
+					}
 				
-				$itemSubActividad = "id";
-
-				$valorSubActiviad = $value["id_actividad"];
-
-				$subActividad = ControladorActividades::ctrMostrarSubActividades($itemSubActividad, $valorSubActiviad);
-				
-				foreach ($subActividad as $key => $value1) {
-					
-					echo '
-
-					<div class="col-md-4 col-sm-6 portfolio-item">
-					
-						<a class="portfolio-link" href="actividad/'.$value["id"].'">
-					
-							<img class="img-responsive" widht="50" src="'.$servidor.$value1["imagen"].'" alt="">
-					
-						</a>
-					
-						<div class="portfolio-caption">
-					
-							<h4>'.$value1["nombre"].'</h4>';
-
-							$itemActividad = "id";
-
-							$valorActividad = $value1["id_actividad"];
-
-							$actividad = ControladorActividades::ctrMostrarActividades($itemActividad, $valorActividad);
-					
-							echo' <a href="actividad/'.$value["id"].'"> <p class="text-muted">'.$actividad["categoria"].'</p> </a>
-					
-						</div>
-					
-					</div> ';
 				}
-			
+
+		
+			echo'
+
+			<a href="actividades">
+				<button class="btn btn-default pull-right btn-lg backColor"><i class="fa fa-eye"></i> Ver todas las actividades <i class="fa fa-arrow-right" aria-hidden="true"></i>
+				</button>
+			</a>';
+
 			}
 
 			?>
 
 		</div>
 		
-		<a href="actividades">
-			<button class="btn btn-default pull-right btn-lg backColor"><i class="fa fa-eye"></i> Ver todas las actividades <i class="fa fa-arrow-right" aria-hidden="true"></i>
-			</button>
-		</a>
+		
 
 	</div>
 
@@ -267,9 +281,6 @@ ACTIVIDADES REALIZADAS  =
 								}
 								
 								$lastKey = array_key_last($pendientes);
-
-
-								$incre = 0;
 								
 								for ($i=$firstKey; $i <=$lastKey ; $i++) { 
 									
@@ -315,8 +326,6 @@ ACTIVIDADES REALIZADAS  =
 								 	if ($i>=1) break;
 									
 								}
-
-								echo '<button class="btn btn-default backColor btn-md" style="margin-bottom:10px"><i class="fa fa-eye"></i> Ver todas</button>';
 								
 							}
 						
