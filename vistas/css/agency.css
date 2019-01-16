@@ -248,7 +248,7 @@ section {
     text-transform: none;
     font-style: italic;
     font-weight: 400;
-    margin-bottom: 50px; }
+    margin-bottom: 10px; }
 
 @media (min-width: 768px) {
   section {

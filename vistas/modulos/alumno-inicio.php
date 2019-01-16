@@ -206,7 +206,7 @@ ACTIVIDADES REALIZADAS  =
 								$sinRealizar = array();
 								
 								# ============================
-							    # = ACTIVIDADES PENDIENTES   =
+							    # = ACTIVIDADES REALIZADAS   =
 							    # ============================
 								foreach ($subActividades as $key => $value) {
 
@@ -268,7 +268,8 @@ ACTIVIDADES REALIZADAS  =
 								
 								$lastKey = array_key_last($pendientes);
 
-								
+
+								$incre = 0;
 								
 								for ($i=$firstKey; $i <=$lastKey ; $i++) { 
 									
@@ -278,9 +279,10 @@ ACTIVIDADES REALIZADAS  =
 									
 									$subActividades = ControladorActividades::ctrMostrarSubActividades($item, $valor);
 									
-									for ($i1=0; $i1<count($subActividades) ; $i1++) { 
+									for ($i1=0; $i1 < count($subActividades); $i1++) { 
 										
 									 echo' 
+										 
 										 <div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
 												
 										 	<a href="'.$subActividades[$i1]["ruta"].'"> <h3 class="text-primary">'.$subActividades[$i1]["nombre"].'</h3> </a>
@@ -303,17 +305,23 @@ ACTIVIDADES REALIZADAS  =
 										 		<i class="fa fa-user" aria-hidden="true"></i>'.$tutor[0]["nombre"]." ".$tutor[0]["apellidos"].'
 										 	</p>
 										
-										 </div>';
+										 </div>
+										
+										 ';
 
 									}
-									
+
+
+								 	if ($i>=1) break;
 									
 								}
-																
+
+								echo '<button class="btn btn-default backColor btn-md" style="margin-bottom:10px"><i class="fa fa-eye"></i> Ver todas</button>';
 								
 							}
-							
-						?>
+						
+
+						?> 
 						
 						 </div>
 

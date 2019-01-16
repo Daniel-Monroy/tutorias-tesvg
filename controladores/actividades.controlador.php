@@ -42,8 +42,7 @@ class ControladorActividades
     return $respuesta;
 
   }
-
-
+  
   # ===================================
   # =MOSTRAR SUB-ACTIVIDADES 2 PARAMETROS
   # ===================================
