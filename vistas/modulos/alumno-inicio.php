@@ -159,42 +159,163 @@ ACTIVIDADES REALIZADAS  =
 
 						<div class="row">
 
-							<div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
-								<h3 class="text-primary">Actividad ANALISIS FODA</h3>
-								<p>
-									<i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 a.m
-								</p>
-								<p>
-									<i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-14
-								</p>
-								<p>
-									<i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez
-								</p>
-							</div>
 
-							<div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
-								
-								<h3 class="text-primary">Actividad LINEA DE LA VIDA</h3>
-								
-								<p>
-									<i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 a.m
-								</p>
-								<p>
-									<i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-14
-								</p>
-								
-								<p>
-									<i class="fa fa-user" aria-hidden="true"></i>Juan Pablo de la Torre Valdez
-								</p>
+							<?php 
+  							# ============================
+						    # = TODAS LAS ACTIVIDADES    =
+						    # ============================
+							$itemSubActividad = "id_tutor";
+
+							$valorSubActiviad = $_SESSION["id_tutor"];
 							
-							</div>
+							$subActividades = ControladorActividades::ctrMostrarSubActividades($itemSubActividad, $valorSubActiviad);
+					
+						    # ============================
+						    # = ACTIVIDADES REALIZADAS   =
+						    # ============================
+							$item = "id_alumno";
+
+						    $valor = $_SESSION["id"];
+
+						    $ordenar = "id";
+
+						    $modo = "DESC";
+
+						    $base = 0;
+
+						    $tope = count($subActividades);
+						    
+						    $actividadesRealizadas = ControladorActividades::ctrMostrarSubActividadesRealizadas($item, $valor, $ordenar, $modo, $base, $tope);
+							
+
+							if (count($actividadesRealizadas) == count($subActividades)) {
+								
+								echo '  
+
+									<div class="col-xs-12">
+										<h1>Sin Actividades Pendientes</h1>
+										<h2>Tutorias TESVG</h2>
+									</div>
+
+								';
+							
+							}  else {
+
+								$realizadas = array();
+
+								$sinRealizar = array();
+								
+								# ============================
+							    # = ACTIVIDADES PENDIENTES   =
+							    # ============================
+								foreach ($subActividades as $key => $value) {
+
+									array_push($sinRealizar, $value["id"]);
+
+									foreach ($actividadesRealizadas as $key => $value1){
+
+									 	if ($value["id"] == $value1["id_actividad"]) {
+
+											array_push($realizadas, $value["id"]);
+							 				
+									 	 }
+
+									 }
+									
+								}
+								
+								$pendientes = array_diff($sinRealizar, $realizadas);
+
+
+								# ===============================
+								# TOMA EL PRIMER INDICE DEL ARRAY
+								# ===============================
+								if (!function_exists('array_key_first')) {
+								    
+								    function array_key_first($pendientes)
+								    {
+								        if (count($pendientes)) {
+								            reset($pendientes);
+								            return key($pendientes);
+								        }
+
+								        return null;
+								    }
+								}
+
+								$firstKey = array_key_first($pendientes);
+
+
+
+								# ===============================
+								# TOMA EL ULTIMO INDICE DEL ARRAY
+								# ===============================
+								if (!function_exists('array_key_last')) {
+  
+								    function array_key_last($array) {
+								        $key = NULL;
+
+								        if(is_array($array)) {
+
+								            end($array);
+								            
+								            $key = key( $array );
+								        }
+
+								        return $key;
+								    }
+								}
+								
+								$lastKey = array_key_last($pendientes);
+
+								
+								
+								for ($i=$firstKey; $i <=$lastKey ; $i++) { 
+									
+									$item = "id";
+									
+									$valor = $pendientes[$i];
+									
+									$subActividades = ControladorActividades::ctrMostrarSubActividades($item, $valor);
+									
+									for ($i1=0; $i1<count($subActividades) ; $i1++) { 
+										
+									 echo' 
+										 <div class="detalle-evento col-xs-12 col-md-6 col-lg-12">
+												
+										 	<a href="'.$subActividades[$i1]["ruta"].'"> <h3 class="text-primary">'.$subActividades[$i1]["nombre"].'</h3> </a>
+											
+										 	<p>
+										 		<i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 a.m
+										 	</p>
+										 	<p>
+										 		<i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-14
+										 	</p>
+										 	<p>';
+
+										 	$itemTutor = "id";
+
+										 	$valorTutor = $subActividades[$i1]["id_tutor"];
+
+										 	$tutor = ControladorTutores::ctrMostrarTutores($itemTutor, $valorTutor);
+												
+										 	echo'
+										 		<i class="fa fa-user" aria-hidden="true"></i>'.$tutor[0]["nombre"]." ".$tutor[0]["apellidos"].'
+										 	</p>
+										
+										 </div>';
+
+									}
+									
+									
+								}
+																
+								
+							}
+							
+						?>
 						
 						 </div>
-						
-						<!-- <div class="col-xs-12">
-							<h1>Sin Actividades Pendientes</h1>
-							<h2>Tutorias TESVG</h2>
-						</div>-->
 
 					</div> 
 
