@@ -123,12 +123,7 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`id`, `nombre`, `apellidos`, `numeroControl`, `id_carrera`, `id_grupo`, `email`, `password`, `activo`, `foto`, `verificacion`, `modo`, `emailEncriptado`, `ultimo_login`, `fecha`) VALUES
-(1, 'Daniel', 'Monroy Dominguez', '2014124078', 5, 6, 'totalazul90@gmail.com', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', 1, 'vistas/img/alumnos/2014124078/750.jpg', 0, 'directo', '', '2019-01-07 14:09:47', '2019-01-07 20:09:47'),
-(2, 'Ronaldo', 'Monroy Dominguez', '2014123069', 4, 1, 'ronaldo@gmail.com', '$2a$07$asxy54ahjppf45sd87a5aubt5jxL59S2nL.aWcAusiuidw1hJ.hWu', 1, '', 1, 'directo', '7203ffa384072399a7538fda48e69392', '0000-00-00 00:00:00', '2019-01-02 18:38:46'),
-(3, 'Diana Laura', 'Monroy Dominguez', '2014123079', 4, 1, 'diana@falso.com', '$2a$07$asxy54ahjppf45sd87a5aubt5jxL59S2nL.aWcAusiuidw1hJ.hWu', 1, '', 1, 'directo', '26d5c25822c779bc33c8d476e6473992', '0000-00-00 00:00:00', '2019-01-02 18:38:54'),
-(4, 'Ramiro', 'Monroy Dominguez', '1231312313', 4, 1, 'ramiro@falso.com', '$2a$07$asxy54ahjppf45sd87a5aubt5jxL59S2nL.aWcAusiuidw1hJ.hWu', 1, '', 1, 'directo', '818e46dceb808be4d335d1e93d1aa69a', '0000-00-00 00:00:00', '2019-01-02 18:30:14'),
-(5, 'José de Jesus', 'Monroy Dominguez', '2098198089', 5, 6, 'jose@falso.com', '$2a$07$asxy54ahjppf45sd87a5aubt5jxL59S2nL.aWcAusiuidw1hJ.hWu', 0, '', 1, 'directo', '9f9b58d916d3f0ba115a422587a00f42', '0000-00-00 00:00:00', '2019-01-03 21:31:52'),
-(6, 'Demetrio', 'Díaz V', '2019123001', 5, 6, 'garrafelina12345670@gmail.com', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 1, 'vistas/img/alumnos/2019123001/283.jpg', 0, 'directo', '', '2019-01-07 14:27:34', '2019-01-07 20:27:34');
+(1, 'Daniel', 'Monroy Dominguez', '2014124078', 5, 6, 'totalazul90@gmail.com', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', 1, 'vistas/img/alumnos/2014124078/750.jpg', 0, 'directo', '', '2019-01-07 14:09:47', '2019-01-07 20:09:47');
 
 -- --------------------------------------------------------
 
